@@ -8,15 +8,45 @@
 
 /* Begin PBXBuildFile section */
 		AA7DDBF52182377E006E1EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA7DDBF42182377E006E1EC0 /* Assets.xcassets */; };
-		AA7DDC06218238C6006E1EC0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC04218238C6006E1EC0 /* main.mm */; };
+		AA7DDC0B21823A61006E1EC0 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7DDC0A21823A61006E1EC0 /* OpenGL.framework */; };
+		AA7DDC0D21823ABB006E1EC0 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7DDC0721823A24006E1EC0 /* SDL2.framework */; };
+		AA7DDC0F21823B4F006E1EC0 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA7DDC0721823A24006E1EC0 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AA7DDC1721825D3B006E1EC0 /* Video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC1621825D3B006E1EC0 /* Video.cpp */; };
+		AA7DDC1B21825D52006E1EC0 /* Vector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC1A21825D52006E1EC0 /* Vector2.cpp */; };
+		AA7DDC1D218263EB006E1EC0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC1C218263EB006E1EC0 /* main.mm */; };
+		AA7DDC2121826420006E1EC0 /* SDLVideo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC2021826420006E1EC0 /* SDLVideo.cpp */; };
+		AA7DDC242182741D006E1EC0 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC232182741D006E1EC0 /* Application.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA7DDC0E21823B43006E1EC0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AA7DDC0F21823B4F006E1EC0 /* SDL2.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		AA7DDBEE2182377D006E1EC0 /* Sprite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sprite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7DDBF42182377E006E1EC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA7DDBF92182377E006E1EC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7DDBFC2182377E006E1EC0 /* Sprite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sprite.entitlements; sourceTree = "<group>"; };
-		AA7DDC04218238C6006E1EC0 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../../../../src/platform/macos/main.mm; sourceTree = "<group>"; };
+		AA7DDC0721823A24006E1EC0 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
+		AA7DDC0A21823A61006E1EC0 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		AA7DDC1521825D3B006E1EC0 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Video.h; path = ../../../../src/platform/Video.h; sourceTree = "<group>"; };
+		AA7DDC1621825D3B006E1EC0 /* Video.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Video.cpp; path = ../../../../src/platform/Video.cpp; sourceTree = "<group>"; };
+		AA7DDC1921825D52006E1EC0 /* Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector2.h; path = ../../../../src/math/Vector2.h; sourceTree = "<group>"; };
+		AA7DDC1A21825D52006E1EC0 /* Vector2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector2.cpp; path = ../../../../src/math/Vector2.cpp; sourceTree = "<group>"; };
+		AA7DDC1C218263EB006E1EC0 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../../../../../src/platform/macos/main.mm; sourceTree = "<group>"; };
+		AA7DDC1F21826420006E1EC0 /* SDLVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDLVideo.h; path = ../../../../../src/platform/sdl/SDLVideo.h; sourceTree = "<group>"; };
+		AA7DDC2021826420006E1EC0 /* SDLVideo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SDLVideo.cpp; path = ../../../../../src/platform/sdl/SDLVideo.cpp; sourceTree = "<group>"; };
+		AA7DDC222182741D006E1EC0 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Application.h; path = ../../../../src/platform/Application.h; sourceTree = "<group>"; };
+		AA7DDC232182741D006E1EC0 /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Application.cpp; path = ../../../../src/platform/Application.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA7DDC0D21823ABB006E1EC0 /* SDL2.framework in Frameworks */,
+				AA7DDC0B21823A61006E1EC0 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,8 +65,12 @@
 		AA7DDBE52182377D006E1EC0 = {
 			isa = PBXGroup;
 			children = (
+				AA7DDC1021825C5D006E1EC0 /* Platform */,
+				AA7DDC1821825D45006E1EC0 /* Math */,
+				AA7DDC0721823A24006E1EC0 /* SDL2.framework */,
 				AA7DDBF02182377D006E1EC0 /* Sprite */,
 				AA7DDBEF2182377D006E1EC0 /* Products */,
+				AA7DDC0921823A61006E1EC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -49,12 +85,58 @@
 		AA7DDBF02182377D006E1EC0 /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
-				AA7DDC04218238C6006E1EC0 /* main.mm */,
 				AA7DDBF42182377E006E1EC0 /* Assets.xcassets */,
 				AA7DDBF92182377E006E1EC0 /* Info.plist */,
 				AA7DDBFC2182377E006E1EC0 /* Sprite.entitlements */,
 			);
 			path = Sprite;
+			sourceTree = "<group>";
+		};
+		AA7DDC0921823A61006E1EC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA7DDC0A21823A61006E1EC0 /* OpenGL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA7DDC1021825C5D006E1EC0 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				AA7DDC1621825D3B006E1EC0 /* Video.cpp */,
+				AA7DDC1521825D3B006E1EC0 /* Video.h */,
+				AA7DDC232182741D006E1EC0 /* Application.cpp */,
+				AA7DDC222182741D006E1EC0 /* Application.h */,
+				AA7DDC1E2182640D006E1EC0 /* SDL */,
+				AA7DDC1121825C97006E1EC0 /* macOS */,
+			);
+			path = Platform;
+			sourceTree = "<group>";
+		};
+		AA7DDC1121825C97006E1EC0 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				AA7DDC1C218263EB006E1EC0 /* main.mm */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		AA7DDC1821825D45006E1EC0 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				AA7DDC1A21825D52006E1EC0 /* Vector2.cpp */,
+				AA7DDC1921825D52006E1EC0 /* Vector2.h */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
+		AA7DDC1E2182640D006E1EC0 /* SDL */ = {
+			isa = PBXGroup;
+			children = (
+				AA7DDC2021826420006E1EC0 /* SDLVideo.cpp */,
+				AA7DDC1F21826420006E1EC0 /* SDLVideo.h */,
+			);
+			path = SDL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -67,6 +149,7 @@
 				AA7DDBEA2182377D006E1EC0 /* Sources */,
 				AA7DDBEB2182377D006E1EC0 /* Frameworks */,
 				AA7DDBEC2182377D006E1EC0 /* Resources */,
+				AA7DDC0E21823B43006E1EC0 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -125,7 +208,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA7DDC06218238C6006E1EC0 /* main.mm in Sources */,
+				AA7DDC1D218263EB006E1EC0 /* main.mm in Sources */,
+				AA7DDC1B21825D52006E1EC0 /* Vector2.cpp in Sources */,
+				AA7DDC242182741D006E1EC0 /* Application.cpp in Sources */,
+				AA7DDC1721825D3B006E1EC0 /* Video.cpp in Sources */,
+				AA7DDC2121826420006E1EC0 /* SDLVideo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +337,10 @@
 				CODE_SIGN_ENTITLEMENTS = Sprite/Sprite.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Sprite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -267,6 +358,10 @@
 				CODE_SIGN_ENTITLEMENTS = Sprite/Sprite.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Sprite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

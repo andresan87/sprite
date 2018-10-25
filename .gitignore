@@ -2,3 +2,4 @@
 *.obj
 projects/macos/Sprite/Sprite.xcodeproj/project.xcworkspace/xcuserdata/*
 projects/macos/Sprite/Sprite.xcodeproj/xcuserdata/*
+projects/macos/Sprite/SDL2.framework/*
