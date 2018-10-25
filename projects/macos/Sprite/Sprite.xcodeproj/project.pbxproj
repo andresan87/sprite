@@ -8,20 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		AA7DDBF52182377E006E1EC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA7DDBF42182377E006E1EC0 /* Assets.xcassets */; };
-		AA7DDBF82182377E006E1EC0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA7DDBF62182377E006E1EC0 /* MainMenu.xib */; };
-		AA7DDC05218238C6006E1EC0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC03218238C6006E1EC0 /* AppDelegate.m */; };
-		AA7DDC06218238C6006E1EC0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC04218238C6006E1EC0 /* main.m */; };
+		AA7DDC06218238C6006E1EC0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC04218238C6006E1EC0 /* main.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AA7DDBEE2182377D006E1EC0 /* Sprite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sprite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7DDBF42182377E006E1EC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AA7DDBF72182377E006E1EC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		AA7DDBF92182377E006E1EC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7DDBFC2182377E006E1EC0 /* Sprite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sprite.entitlements; sourceTree = "<group>"; };
-		AA7DDC02218238C6006E1EC0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../../../src/platform/macos/AppDelegate.h; sourceTree = "<group>"; };
-		AA7DDC03218238C6006E1EC0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../../../../src/platform/macos/AppDelegate.m; sourceTree = "<group>"; };
-		AA7DDC04218238C6006E1EC0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../../../../src/platform/macos/main.m; sourceTree = "<group>"; };
+		AA7DDC04218238C6006E1EC0 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = main.mm; path = ../../../../src/platform/macos/main.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,11 +49,8 @@
 		AA7DDBF02182377D006E1EC0 /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
-				AA7DDC02218238C6006E1EC0 /* AppDelegate.h */,
-				AA7DDC03218238C6006E1EC0 /* AppDelegate.m */,
-				AA7DDC04218238C6006E1EC0 /* main.m */,
+				AA7DDC04218238C6006E1EC0 /* main.mm */,
 				AA7DDBF42182377E006E1EC0 /* Assets.xcassets */,
-				AA7DDBF62182377E006E1EC0 /* MainMenu.xib */,
 				AA7DDBF92182377E006E1EC0 /* Info.plist */,
 				AA7DDBFC2182377E006E1EC0 /* Sprite.entitlements */,
 			);
@@ -123,7 +115,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA7DDBF52182377E006E1EC0 /* Assets.xcassets in Resources */,
-				AA7DDBF82182377E006E1EC0 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,23 +125,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA7DDC06218238C6006E1EC0 /* main.m in Sources */,
-				AA7DDC05218238C6006E1EC0 /* AppDelegate.m in Sources */,
+				AA7DDC06218238C6006E1EC0 /* main.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		AA7DDBF62182377E006E1EC0 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA7DDBF72182377E006E1EC0 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		AA7DDBFD2182377E006E1EC0 /* Debug */ = {
