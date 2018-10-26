@@ -33,7 +33,6 @@ struct Vector3 : public PODVector3
 	Vector3& operator /= (const float f);
 };
 
-
 } // namespace math
 } // namespace sprite
 

@@ -101,13 +101,13 @@ Vector3& Vector3::operator -= (const Vector3& v)
 	return *this;
 }
 
-Vector3& Vector3::operator *= (float f)
+Vector3& Vector3::operator *= (const float f)
 {
 	*this = Vector3(x, y, z) * f;
 	return *this;
 }
 
-Vector3& Vector3::operator /= (float f)
+Vector3& Vector3::operator /= (const float f)
 {
 	*this = Vector3(x, y, z) / f;
 	return *this;
