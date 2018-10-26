@@ -23,7 +23,7 @@ SDLVideo::SDLVideo(
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
 	{
-		Log("SDL initialization failed", Application::LMT_ERROR);
+		Log("SDL initialization failed", Video::LMT_ERROR);
 		return;
 	}
 
@@ -50,7 +50,7 @@ SDLVideo::SDLVideo(
 	SDL_GL_SetSwapInterval(1);
 }
 
-Application::APP_STATUS SDLVideo::HandleEvents()
+Video::APP_STATUS SDLVideo::HandleEvents()
 {
 	APP_STATUS r = AS_OK;
 
@@ -94,9 +94,9 @@ Application::APP_STATUS SDLVideo::HandleEvents()
 	return r;
 }
 
-void SDLVideo::Log(const std::string& message, const Application::LOG_MESSAGE_TYPE type)
+void SDLVideo::Log(const std::string& message, const Video::LOG_MESSAGE_TYPE type)
 {
-	if (type == Application::LMT_ERROR)
+	if (type == Video::LMT_ERROR)
 	{
 		std::cerr << message << std::endl;
 	}

@@ -1,4 +1,4 @@
-#include "../sdl/SDLVideo.h"
+#include "../../video/sdl/SDLVideo.h"
 
 int main(int argc, const char * argv[])
 {
@@ -6,10 +6,10 @@ int main(int argc, const char * argv[])
 	
 	VideoPtr video = Video::Create("Sprite", math::Vector2(800.0f, 600.0f), false);
 	
-	Application::APP_STATUS status;
-	while ((status = video->HandleEvents()) != Application::AS_QUIT)
+	Video::APP_STATUS status;
+	while ((status = video->HandleEvents()) != Video::AS_QUIT)
 	{
-		if (status == Application::AS_SKIP)
+		if (status == Video::AS_SKIP)
 			continue;
 	}
 	return 0;
