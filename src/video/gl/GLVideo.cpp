@@ -23,9 +23,12 @@ math::Vector2 GLVideo::GetResolution() const
 void GLVideo::SetupSpriteRenderStates()
 {
 	SetResolution(m_resolution);
+	glEnable(GL_DITHER);
+
 	glDisable(GL_LIGHTING);
 	glDisable(GL_CULL_FACE);
-	glDisable(GL_DITHER);
+
+	glDisable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glClearDepth(1.0f);
 	glDepthRange(0.0f, 1.0f);
