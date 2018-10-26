@@ -20,12 +20,12 @@ Vector2::Vector2(const Vector2& v2)
 	y = v2.y;
 }
 
-Vector2::Vector2(float fx, float fy)
+Vector2::Vector2(const float fx, const float fy)
 {
 	x = fx; y = fy;
 }
 
-Vector2::Vector2(float xy)
+Vector2::Vector2(const float xy)
 {
 	x = y = xy;
 }
@@ -46,7 +46,7 @@ float Vector2::SquaredLength() const
 	#endif
 }
 
-Vector2 Vector2::operator * (float v) const
+Vector2 Vector2::operator * (const float v) const
 {
 	#if defined(__ARM_NEON__)
 		float32x2_t r = vmul_f32(*(float32x2_t*)&x, vdup_n_f32((float32_t)v));
@@ -66,7 +66,7 @@ Vector2 Vector2::operator * (const Vector2& v) const
 	#endif
 }
 
-Vector2 Vector2::operator / (float v) const
+Vector2 Vector2::operator / (const float v) const
 {
 	#if defined(__ARM_NEON__)
 		float32x2_t values = vdup_n_f32((float32_t)v);
@@ -95,7 +95,7 @@ Vector2 Vector2::operator / (const Vector2& v) const
 	#endif
 }
 
-Vector2 Vector2::operator - (float v) const
+Vector2 Vector2::operator - (const float v) const
 {
 	#if defined(__ARM_NEON__)
 		float32x2_t r = vsub_f32(*(float32x2_t *)&x, vdup_n_f32((float32_t)v));
@@ -115,7 +115,7 @@ Vector2 Vector2::operator - (const Vector2& v) const
 	#endif
 }
 
-Vector2 Vector2::operator + (float v) const
+Vector2 Vector2::operator + (const float v) const
 {
 	#if defined(__ARM_NEON__)
 		float32x2_t r = vadd_f32(*(float32x2_t *)&x, vdup_n_f32((float32_t)v));
@@ -166,13 +166,13 @@ Vector2& Vector2::operator -= (const Vector2& v2)
 	return *this;
 }
 
-Vector2& Vector2::operator *= (float f)
+Vector2& Vector2::operator *= (const float f)
 {
 	*this = Vector2(x, y) * f;
 	return *this;
 }
 
-Vector2& Vector2::operator /= (float f)
+Vector2& Vector2::operator /= (const float f)
 {
 	*this = Vector2(x, y) / f;
 	return *this;

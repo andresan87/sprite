@@ -13,24 +13,24 @@ struct Vector2 : public PODVector2
 {
 	Vector2();
 	Vector2(const Vector2& v2);
-	Vector2(float fx, float fy);
-	Vector2(float xy);
+	Vector2(const float fx, const float fy);
+	Vector2(const float xy);
 	float Length() const;
 	float SquaredLength() const;
-	Vector2 operator * (float v) const;
+	Vector2 operator * (const float v) const;
 	Vector2 operator * (const Vector2& v) const;
-	Vector2 operator / (float v) const;
+	Vector2 operator / (const float v) const;
 	Vector2 operator / (const Vector2& v) const;
-	Vector2 operator - (float v) const;
+	Vector2 operator - (const float v) const;
 	Vector2 operator - (const Vector2& v) const;
-	Vector2 operator + (float v) const;
+	Vector2 operator + (const float v) const;
 	Vector2 operator + (const Vector2& v) const;
 	bool operator == (const Vector2& v) const;
 	bool operator != (const Vector2& v2) const;
 	Vector2& operator += (const Vector2& v2);
 	Vector2& operator -= (const Vector2& v2);
-	Vector2& operator *= (float f);
-	Vector2& operator /= (float f);
+	Vector2& operator *= (const float f);
+	Vector2& operator /= (const float f);
 };
 
 
