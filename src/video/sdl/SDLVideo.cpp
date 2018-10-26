@@ -17,6 +17,7 @@ SDLVideo::SDLVideo(
 	const std::string& title,
 	const math::Vector2& resolution,
 	const bool fullscreen) :
+	GLVideo(resolution),
 	m_windowHasFocus(false),
 	m_windowIsVisible(false),
 	m_mouseWheel(0.0f)

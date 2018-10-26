@@ -1,7 +1,7 @@
 #ifndef SPRITE_PLATFORM_SDLVIDEO_H_
 #define SPRITE_PLATFORM_SDLVIDEO_H_
 
-#include "../Video.h"
+#include "../gl/GLVideo.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdocumentation"
@@ -11,7 +11,7 @@
 
 namespace sprite {
 
-class SDLVideo : public Video
+class SDLVideo : public GLVideo
 {
 	SDL_Window* m_window;
 	SDL_GLContext m_glcontext;

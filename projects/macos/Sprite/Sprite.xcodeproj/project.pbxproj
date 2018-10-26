@@ -15,6 +15,7 @@
 		AA7DDC1D218263EB006E1EC0 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC1C218263EB006E1EC0 /* main.mm */; };
 		AA7DDC2C21838653006E1EC0 /* Video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC2A21838653006E1EC0 /* Video.cpp */; };
 		AA7DDC3021838738006E1EC0 /* SDLVideo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC2F21838738006E1EC0 /* SDLVideo.cpp */; };
+		AA7DDC3421838BE3006E1EC0 /* GLVideo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC3321838BE3006E1EC0 /* GLVideo.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,8 @@
 		AA7DDC2B21838653006E1EC0 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Video.h; path = ../../../src/video/Video.h; sourceTree = "<group>"; };
 		AA7DDC2E21838738006E1EC0 /* SDLVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDLVideo.h; path = ../../../../src/video/sdl/SDLVideo.h; sourceTree = "<group>"; };
 		AA7DDC2F21838738006E1EC0 /* SDLVideo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SDLVideo.cpp; path = ../../../../src/video/sdl/SDLVideo.cpp; sourceTree = "<group>"; };
+		AA7DDC3221838BE3006E1EC0 /* GLVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLVideo.h; path = ../../../src/video/gl/GLVideo.h; sourceTree = "<group>"; };
+		AA7DDC3321838BE3006E1EC0 /* GLVideo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLVideo.cpp; path = ../../../src/video/gl/GLVideo.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,7 @@
 				AA7DDC2A21838653006E1EC0 /* Video.cpp */,
 				AA7DDC2B21838653006E1EC0 /* Video.h */,
 				AA7DDC2D2183872A006E1EC0 /* SDL */,
+				AA7DDC3121838962006E1EC0 /* GL */,
 			);
 			name = Video;
 			sourceTree = "<group>";
@@ -140,6 +144,15 @@
 				AA7DDC2E21838738006E1EC0 /* SDLVideo.h */,
 			);
 			path = SDL;
+			sourceTree = "<group>";
+		};
+		AA7DDC3121838962006E1EC0 /* GL */ = {
+			isa = PBXGroup;
+			children = (
+				AA7DDC3321838BE3006E1EC0 /* GLVideo.cpp */,
+				AA7DDC3221838BE3006E1EC0 /* GLVideo.h */,
+			);
+			name = GL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA7DDC1D218263EB006E1EC0 /* main.mm in Sources */,
+				AA7DDC3421838BE3006E1EC0 /* GLVideo.cpp in Sources */,
 				AA7DDC1B21825D52006E1EC0 /* Vector2.cpp in Sources */,
 				AA7DDC2C21838653006E1EC0 /* Video.cpp in Sources */,
 				AA7DDC3021838738006E1EC0 /* SDLVideo.cpp in Sources */,
