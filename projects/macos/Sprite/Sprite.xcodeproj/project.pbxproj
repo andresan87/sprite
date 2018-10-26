@@ -47,6 +47,7 @@
 		AA7DDC2F21838738006E1EC0 /* SDLVideo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SDLVideo.cpp; path = ../../../../src/video/sdl/SDLVideo.cpp; sourceTree = "<group>"; };
 		AA7DDC3221838BE3006E1EC0 /* GLVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLVideo.h; path = ../../../src/video/gl/GLVideo.h; sourceTree = "<group>"; };
 		AA7DDC3321838BE3006E1EC0 /* GLVideo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLVideo.cpp; path = ../../../src/video/gl/GLVideo.cpp; sourceTree = "<group>"; };
+		AA7DDC35218391AF006E1EC0 /* GLInclude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GLInclude.h; path = ../../../src/video/gl/GLInclude.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +150,7 @@
 		AA7DDC3121838962006E1EC0 /* GL */ = {
 			isa = PBXGroup;
 			children = (
+				AA7DDC35218391AF006E1EC0 /* GLInclude.h */,
 				AA7DDC3321838BE3006E1EC0 /* GLVideo.cpp */,
 				AA7DDC3221838BE3006E1EC0 /* GLVideo.h */,
 			);

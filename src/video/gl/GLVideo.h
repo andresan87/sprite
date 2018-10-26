@@ -13,8 +13,13 @@ namespace sprite {
 
 class GLVideo : public Video
 {
+	math::Vector2 m_resolution;
+
 public:
 	GLVideo(const math::Vector2& resolution);
+	
+	void SetResolution(const math::Vector2& resolution);
+	void SetupSpriteRenderStates();
 };
 
 } // namespace sprite

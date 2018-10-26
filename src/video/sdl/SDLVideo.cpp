@@ -49,6 +49,8 @@ SDLVideo::SDLVideo(
 	}
 
 	SDL_GL_SetSwapInterval(1);
+	
+	SetupSpriteRenderStates();
 }
 
 Video::APP_STATUS SDLVideo::HandleEvents()
