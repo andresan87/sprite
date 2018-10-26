@@ -17,6 +17,7 @@
 		AA7DDC3021838738006E1EC0 /* SDLVideo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC2F21838738006E1EC0 /* SDLVideo.cpp */; };
 		AA7DDC3421838BE3006E1EC0 /* GLVideo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC3321838BE3006E1EC0 /* GLVideo.cpp */; };
 		AA7DDC3821839FA2006E1EC0 /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC3721839FA2006E1EC0 /* Vector3.cpp */; };
+		AA7DDC3B2183C89F006E1EC0 /* Vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC3A2183C89F006E1EC0 /* Vector4.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,8 @@
 		AA7DDC35218391AF006E1EC0 /* GLInclude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GLInclude.h; path = ../../../src/video/gl/GLInclude.h; sourceTree = "<group>"; };
 		AA7DDC3621839FA2006E1EC0 /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector3.h; path = ../../../../src/math/Vector3.h; sourceTree = "<group>"; };
 		AA7DDC3721839FA2006E1EC0 /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector3.cpp; path = ../../../../src/math/Vector3.cpp; sourceTree = "<group>"; };
+		AA7DDC392183C89F006E1EC0 /* Vector4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector4.h; path = ../../../../src/math/Vector4.h; sourceTree = "<group>"; };
+		AA7DDC3A2183C89F006E1EC0 /* Vector4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector4.cpp; path = ../../../../src/math/Vector4.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				AA7DDC1921825D52006E1EC0 /* Vector2.h */,
 				AA7DDC3721839FA2006E1EC0 /* Vector3.cpp */,
 				AA7DDC3621839FA2006E1EC0 /* Vector3.h */,
+				AA7DDC3A2183C89F006E1EC0 /* Vector4.cpp */,
+				AA7DDC392183C89F006E1EC0 /* Vector4.h */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA7DDC3B2183C89F006E1EC0 /* Vector4.cpp in Sources */,
 				AA7DDC1D218263EB006E1EC0 /* main.mm in Sources */,
 				AA7DDC3421838BE3006E1EC0 /* GLVideo.cpp in Sources */,
 				AA7DDC1B21825D52006E1EC0 /* Vector2.cpp in Sources */,
