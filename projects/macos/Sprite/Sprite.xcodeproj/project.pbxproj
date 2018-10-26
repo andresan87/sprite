@@ -16,6 +16,7 @@
 		AA7DDC2C21838653006E1EC0 /* Video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC2A21838653006E1EC0 /* Video.cpp */; };
 		AA7DDC3021838738006E1EC0 /* SDLVideo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC2F21838738006E1EC0 /* SDLVideo.cpp */; };
 		AA7DDC3421838BE3006E1EC0 /* GLVideo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC3321838BE3006E1EC0 /* GLVideo.cpp */; };
+		AA7DDC3821839FA2006E1EC0 /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7DDC3721839FA2006E1EC0 /* Vector3.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +49,8 @@
 		AA7DDC3221838BE3006E1EC0 /* GLVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLVideo.h; path = ../../../src/video/gl/GLVideo.h; sourceTree = "<group>"; };
 		AA7DDC3321838BE3006E1EC0 /* GLVideo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLVideo.cpp; path = ../../../src/video/gl/GLVideo.cpp; sourceTree = "<group>"; };
 		AA7DDC35218391AF006E1EC0 /* GLInclude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GLInclude.h; path = ../../../src/video/gl/GLInclude.h; sourceTree = "<group>"; };
+		AA7DDC3621839FA2006E1EC0 /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector3.h; path = ../../../../src/math/Vector3.h; sourceTree = "<group>"; };
+		AA7DDC3721839FA2006E1EC0 /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector3.cpp; path = ../../../../src/math/Vector3.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 			children = (
 				AA7DDC1A21825D52006E1EC0 /* Vector2.cpp */,
 				AA7DDC1921825D52006E1EC0 /* Vector2.h */,
+				AA7DDC3721839FA2006E1EC0 /* Vector3.cpp */,
+				AA7DDC3621839FA2006E1EC0 /* Vector3.h */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				AA7DDC3421838BE3006E1EC0 /* GLVideo.cpp in Sources */,
 				AA7DDC1B21825D52006E1EC0 /* Vector2.cpp in Sources */,
 				AA7DDC2C21838653006E1EC0 /* Video.cpp in Sources */,
+				AA7DDC3821839FA2006E1EC0 /* Vector3.cpp in Sources */,
 				AA7DDC3021838738006E1EC0 /* SDLVideo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
