@@ -15,6 +15,11 @@ void GLVideo::SetResolution(const math::Vector2& resolution)
 	glViewport(0, 0, (GLsizei)resolution.x, (GLsizei)resolution.y);
 }
 
+math::Vector2 GLVideo::GetResolution() const
+{
+	return m_resolution;
+}
+
 void GLVideo::SetupSpriteRenderStates()
 {
 	SetResolution(m_resolution);

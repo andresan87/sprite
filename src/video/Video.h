@@ -35,6 +35,7 @@ public:
 		const bool fullscreen);
 
 	virtual void SetResolution(const math::Vector2& resolution) = 0;
+	virtual math::Vector2 GetResolution() const = 0;
 
 	virtual void Log(const std::string& message, const LOG_MESSAGE_TYPE type) = 0;
 	virtual APP_STATUS HandleEvents() = 0;

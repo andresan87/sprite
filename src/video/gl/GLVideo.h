@@ -19,6 +19,8 @@ public:
 	GLVideo(const math::Vector2& resolution);
 	
 	void SetResolution(const math::Vector2& resolution);
+	math::Vector2 GetResolution() const;
+
 	void SetupSpriteRenderStates();
 };
 
