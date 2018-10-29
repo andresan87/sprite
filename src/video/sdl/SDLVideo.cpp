@@ -41,6 +41,14 @@ SDLVideo::SDLVideo(
 			static_cast<int>(resolution.y),
 			flags)) != NULL)
 	{
+
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
+		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+
 		m_glcontext = SDL_GL_CreateContext(m_window);
 	}
 	else
@@ -115,7 +123,7 @@ void SDLVideo::Log(const std::string& message, const Video::LOG_MESSAGE_TYPE typ
 {
 	if (type == Video::LMT_ERROR)
 	{
-		std::cerr << message << std::endl;
+		std::cerr << "ERROR" << " " << message << std::endl;
 	}
 	else
 	{

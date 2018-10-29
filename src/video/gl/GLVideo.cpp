@@ -2,6 +2,8 @@
 
 #include "GLInclude.h"
 
+#include <sstream>
+
 namespace sprite {
 
 GLVideo::GLVideo(const math::Vector2& resolution) :
@@ -39,7 +41,14 @@ void GLVideo::BeginRendering()
 
 void GLVideo::EndRendering()
 {
-	//
+	#if DEBUG
+		GLenum err;
+		while ((err = glGetError()) != GL_NO_ERROR)
+		{
+			std::stringstream ss; ss << "OpenGL error: " << err;
+			Log(ss.str(), Video::LMT_ERROR);
+		}
+	#endif
 }
 
 void GLVideo::SetupSpriteRenderStates()
@@ -47,19 +56,12 @@ void GLVideo::SetupSpriteRenderStates()
 	SetResolution(m_resolution);
 	glEnable(GL_DITHER);
 
-	glDisable(GL_LIGHTING);
 	glDisable(GL_CULL_FACE);
 
 	glDisable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glClearDepth(1.0f);
 	glDepthRange(0.0f, 1.0f);
-
-	glActiveTexture(GL_TEXTURE1);
-	glEnable(GL_TEXTURE_2D);
-
-	glActiveTexture(GL_TEXTURE0);
-	glEnable(GL_TEXTURE_2D);
 }
 
 } // namespace sprite
