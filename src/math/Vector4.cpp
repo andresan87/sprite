@@ -115,21 +115,5 @@ Vector4& Vector4::operator /= (const float f)
 	return *this;
 }
 
-uint32_t Vector4::ARGB(const char a, const char r, const char g, const char b)
-{
-	return
-	(
-		(((a) & 0xff) << 24) |
-		(((r) & 0xff) << 16) |
-		(((g) & 0xff) <<  8) |
-		(((b) & 0xff) <<  0)
-	);
-}
-
-uint32_t Vector4::ToARGBColor() const
-{
-	return ARGB(char(w * 255.0f), char(x * 255.0f), char(y * 255.0f), char(z * 255.0f));
-}
-
 } // namespace math
 } // namespace sprite
