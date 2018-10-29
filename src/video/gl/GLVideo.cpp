@@ -4,7 +4,8 @@
 
 namespace sprite {
 
-GLVideo::GLVideo(const math::Vector2& resolution)
+GLVideo::GLVideo(const math::Vector2& resolution) :
+	m_clearColor(0.0f, 0.0f, 0.0f, 0.0f)
 {
 	m_resolution = resolution;
 }
@@ -18,6 +19,27 @@ void GLVideo::SetResolution(const math::Vector2& resolution)
 math::Vector2 GLVideo::GetResolution() const
 {
 	return m_resolution;
+}
+
+void GLVideo::SetClearColor(const Color& color)
+{
+	m_clearColor = color;
+}
+
+Color GLVideo::GetClearColor() const
+{
+	return m_clearColor;
+}
+
+void GLVideo::BeginRendering()
+{
+	glClearColor(m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void GLVideo::EndRendering()
+{
+	//
 }
 
 void GLVideo::SetupSpriteRenderStates()

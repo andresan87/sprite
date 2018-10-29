@@ -32,6 +32,8 @@ public:
 	~SDLVideo();
 
 	APP_STATUS HandleEvents();
+	
+	void EndRendering();
 
 	void Log(const std::string& message, const LOG_MESSAGE_TYPE type);
 

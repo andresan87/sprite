@@ -105,6 +105,12 @@ Video::APP_STATUS SDLVideo::HandleEvents()
 	return r;
 }
 
+void SDLVideo::EndRendering()
+{
+	GLVideo::EndRendering();
+	SDL_GL_SwapWindow(m_window);
+}
+
 void SDLVideo::Log(const std::string& message, const Video::LOG_MESSAGE_TYPE type)
 {
 	if (type == Video::LMT_ERROR)

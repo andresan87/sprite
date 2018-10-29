@@ -5,6 +5,7 @@
 #include <string>
 
 #include "../math/Vector2.h"
+#include "../math/Color.h"
 
 namespace sprite {
 
@@ -36,6 +37,12 @@ public:
 
 	virtual void SetResolution(const math::Vector2& resolution) = 0;
 	virtual math::Vector2 GetResolution() const = 0;
+
+	virtual void SetClearColor(const Color& color) = 0;
+	virtual Color GetClearColor() const = 0;
+
+	virtual void BeginRendering() = 0;
+	virtual void EndRendering() = 0;
 
 	virtual void Log(const std::string& message, const LOG_MESSAGE_TYPE type) = 0;
 	virtual APP_STATUS HandleEvents() = 0;

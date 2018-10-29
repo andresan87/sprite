@@ -6,11 +6,16 @@ int main(int argc, const char * argv[])
 	
 	VideoPtr video = Video::Create("Sprite", math::Vector2(800.0f, 600.0f), false);
 	
+	video->SetClearColor(Color(0xFF336699));
+
 	Video::APP_STATUS status;
 	while ((status = video->HandleEvents()) != Video::AS_QUIT)
 	{
 		if (status == Video::AS_SKIP)
 			continue;
+		
+		video->BeginRendering();
+		video->EndRendering();
 	}
 	return 0;
 }

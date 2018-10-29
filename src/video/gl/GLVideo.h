@@ -14,10 +14,17 @@ namespace sprite {
 class GLVideo : public Video
 {
 	math::Vector2 m_resolution;
+	Color m_clearColor;
 
 public:
 	GLVideo(const math::Vector2& resolution);
-	
+
+	void SetClearColor(const Color& color);
+	Color GetClearColor() const;
+
+	void BeginRendering();
+	void EndRendering();
+
 	void SetResolution(const math::Vector2& resolution);
 	math::Vector2 GetResolution() const;
 
