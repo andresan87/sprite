@@ -28,6 +28,8 @@ public:
 		const std::string& title,
 		const math::Vector2& resolution,
 		const bool fullscreen);
+	
+	~SDLVideo();
 
 	APP_STATUS HandleEvents();
 

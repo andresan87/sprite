@@ -45,12 +45,20 @@ SDLVideo::SDLVideo(
 	}
 	else
 	{
+		SDL_Quit();
 		return;
 	}
 
 	SDL_GL_SetSwapInterval(1);
 	
 	SetupSpriteRenderStates();
+}
+
+SDLVideo::~SDLVideo()
+{
+	SDL_GL_DeleteContext(m_glcontext);
+	SDL_DestroyWindow(m_window);
+	SDL_Quit();
 }
 
 Video::APP_STATUS SDLVideo::HandleEvents()
