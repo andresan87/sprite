@@ -57,6 +57,13 @@ GLPolygonRenderer::GLPolygonRenderer(
 	}
 }
 
+GLPolygonRenderer::~GLPolygonRenderer()
+{
+    glDeleteVertexArrays(1, &m_vertexArrayObject);
+    glDeleteBuffers(1, &m_arrayBufferObject);
+    glDeleteBuffers(1, &m_arrayElementObject);
+}
+
 void GLPolygonRenderer::BeginRendering(const ShaderPtr& shader)
 {
 	glBindVertexArray(m_vertexArrayObject);

@@ -24,6 +24,8 @@ public:
 		const std::vector<PolygonRenderer::Vertex>& vertices,
 		const std::vector<unsigned int>& indices,
 		const PolygonRenderer::POLYGON_MODE mode);
+	
+	~GLPolygonRenderer();
 
 	void BeginRendering(const ShaderPtr& shader);
 	void Render();
