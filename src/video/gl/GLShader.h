@@ -5,11 +5,17 @@
 
 #include "GLInclude.h"
 
+#include <map>
+
 namespace sprite {
 
 class GLShader : public Shader
 {
 	GLuint m_shaderProgram;
+	
+	std::map<std::string, GLint> m_parameters;
+
+	GLint FindUniformLocation(const std::string& name);
 
 public:
 	GLShader(
@@ -18,6 +24,11 @@ public:
 		const std::string& fragmentShaderSource);
 
 	GLuint GetShaderProgram() const;
+
+	void SetParameter(const std::string& name, const float v);
+	void SetParameter(const std::string& name, const math::Vector2& v);
+	void SetParameter(const std::string& name, const math::Vector3& v);
+	void SetParameter(const std::string& name, const math::Vector4& v);
 };
 
 } // namespace sprite

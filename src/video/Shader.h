@@ -3,6 +3,10 @@
 
 #include "Video.h"
 
+#include "../math/Vector2.h"
+#include "../math/Vector3.h"
+#include "../math/Vector4.h"
+
 #include <memory>
 #include <string>
 
@@ -19,6 +23,11 @@ public:
 		const VideoPtr& video,
 		const std::string& vertexShaderSource,
 		const std::string& fragmentShaderSource);
+
+	virtual void SetParameter(const std::string& name, const float v) = 0;
+	virtual void SetParameter(const std::string& name, const math::Vector2& v) = 0;
+	virtual void SetParameter(const std::string& name, const math::Vector3& v) = 0;
+	virtual void SetParameter(const std::string& name, const math::Vector4& v) = 0;
 };
 
 } // namespace sprite
