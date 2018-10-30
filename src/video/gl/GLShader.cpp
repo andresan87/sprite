@@ -9,8 +9,7 @@ ShaderPtr Shader::Create(
 	const std::string& vertexShaderSource,
 	const std::string& fragmentShaderSource)
 {
-	std::shared_ptr<GLShader> r = std::make_shared<GLShader>(video, vertexShaderSource, fragmentShaderSource);
-	return r;
+	return std::make_shared<GLShader>(video, vertexShaderSource, fragmentShaderSource);
 }
 
 GLShader::GLShader(

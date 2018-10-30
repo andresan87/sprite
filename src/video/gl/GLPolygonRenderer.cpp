@@ -9,8 +9,7 @@ PolygonRendererPtr PolygonRenderer::Create(
 	const std::vector<unsigned int>& indices,
 	const PolygonRenderer::POLYGON_MODE mode)
 {
-	std::shared_ptr<GLPolygonRenderer> r = std::make_shared<GLPolygonRenderer>(vertices, indices, mode);
-	return (r);
+	return std::make_shared<GLPolygonRenderer>(vertices, indices, mode);
 }
 
 GLPolygonRenderer::GLPolygonRenderer(
