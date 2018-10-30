@@ -1,6 +1,8 @@
 #include "../../video/Video.h"
 #include "../../video/PolygonRenderer.h"
 
+#include "../../platform/FileIOHub.h"
+
 const char* vertexShaderSource =
 	"#version 330 core\n"
 	"layout (location = 0) in vec3 aPos;\n"
@@ -24,6 +26,8 @@ const char* fragmentShaderSource =
 int main(int argc, const char * argv[])
 {
 	using namespace sprite;
+	
+	FileIOHubPtr fileIOHub = FileIOHub::Create();
 	
 	VideoPtr video = Video::Create("Sprite", math::Vector2(800.0f, 600.0f), false);
 
