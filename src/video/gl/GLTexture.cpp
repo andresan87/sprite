@@ -1,9 +1,13 @@
 #include "GLTexture.h"
 
+#include "../../math/Util.h"
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wcomma"
 #define STB_IMAGE_IMPLEMENTATION
 #include "../../utilities/stb/stb_image.h"
+#define STB_IMAGE_RESIZE_IMPLEMENTATION
+#include "../../utilities/stb/stb_image_resize.h"
 #pragma clang diagnostic pop
 
 namespace sprite {
@@ -46,26 +50,34 @@ GLTexture::GLTexture(
 	GLint format;
 	switch (nrChannels)
 	{
-		case 1:
-			format = GL_RED;
-			break;
-		case 2:
-			format = GL_RG;
-			break;
-		case 3:
-			format = GL_RGB;
-			break;
-		case 4:
-			format = GL_RGBA;
-			break;
+		case 1: format = GL_RED; break;
+		case 2: format = GL_RG; break;
+		case 3: format = GL_RGB; break;
+		case 4: format = GL_RGBA; break;
 		default:
 			stbi_image_free(data);
 			glDeleteTextures(1, &m_texture);
 			video->Log("GLTexture invalid format for file " + fileName, Video::LMT_ERROR);
 			return;
 	}
+	
+	if (math::Util::IsPowerOfTwo(width) && math::Util::IsPowerOfTwo(height))
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+	}
+	else
+	{
+		const int newWidth  = math::Util::FindNextPowerOfTwoValue(width);
+		const int newHeight = math::Util::FindNextPowerOfTwoValue(height);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+		unsigned char* output = new unsigned char [newWidth * newHeight * nrChannels];
+		stbir_resize_uint8(data, width, height, 0, output, newWidth, newHeight, 0, nrChannels);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, format, newWidth, newHeight, 0, format, GL_UNSIGNED_BYTE, output);
+
+		delete [] output;
+	}
+
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	stbi_image_free(data);

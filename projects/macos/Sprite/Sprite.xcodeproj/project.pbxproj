@@ -31,6 +31,7 @@
 		AA95468A2188FD5B00FFCA0E /* assets in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA9546892188FD5B00FFCA0E /* assets */; };
 		AA95469821890E6500FFCA0E /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA95469621890E6500FFCA0E /* Texture.cpp */; };
 		AA95469B21890F1600FFCA0E /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA95469921890F1600FFCA0E /* GLTexture.cpp */; };
+		AA95469E218A2DF800FFCA0E /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA95469C218A2DF700FFCA0E /* Util.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -102,6 +103,8 @@
 		AA95469721890E6500FFCA0E /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = ../../../src/video/Texture.h; sourceTree = "<group>"; };
 		AA95469921890F1600FFCA0E /* GLTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLTexture.cpp; path = ../../../src/video/gl/GLTexture.cpp; sourceTree = "<group>"; };
 		AA95469A21890F1600FFCA0E /* GLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLTexture.h; path = ../../../src/video/gl/GLTexture.h; sourceTree = "<group>"; };
+		AA95469C218A2DF700FFCA0E /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Util.cpp; path = ../../../src/math/Util.cpp; sourceTree = "<group>"; };
+		AA95469D218A2DF800FFCA0E /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = ../../../src/math/Util.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +231,8 @@
 		AA9546722188ED1D00FFCA0E /* Math */ = {
 			isa = PBXGroup;
 			children = (
+				AA95469C218A2DF700FFCA0E /* Util.cpp */,
+				AA95469D218A2DF800FFCA0E /* Util.h */,
 				AA9546762188ED3300FFCA0E /* Color.cpp */,
 				AA9546782188ED3300FFCA0E /* Color.h */,
 				AA9546792188ED3300FFCA0E /* Vector2.cpp */,
@@ -329,6 +334,7 @@
 				AA7DDC5F2188EB73006E1EC0 /* FileManager.cpp in Sources */,
 				AA7DDC3021838738006E1EC0 /* SDLVideo.cpp in Sources */,
 				AA9546812188F34500FFCA0E /* StdFileManager.cpp in Sources */,
+				AA95469E218A2DF800FFCA0E /* Util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
