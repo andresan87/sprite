@@ -14,8 +14,11 @@ class GLShader : public Shader
 	GLuint m_shaderProgram;
 	
 	std::map<std::string, GLint> m_parameters;
+	std::map<std::string, GLint> m_textureParamsIndices;
 
-	GLint FindUniformLocation(const std::string& name);
+	GLint FindUniformLocation(const std::string& name, const bool isTexture);
+	
+	unsigned int m_textureCount;
 
 public:
 	GLShader(
@@ -29,6 +32,7 @@ public:
 	void SetParameter(const std::string& name, const math::Vector2& v);
 	void SetParameter(const std::string& name, const math::Vector3& v);
 	void SetParameter(const std::string& name, const math::Vector4& v);
+	void SetParameter(const std::string& name, TexturePtr texture);
 };
 
 } // namespace sprite

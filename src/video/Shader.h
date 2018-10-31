@@ -2,6 +2,7 @@
 #define SPRITE_PLATFORM_SHADER_H_
 
 #include "Video.h"
+#include "Texture.h"
 
 #include "../math/Vector2.h"
 #include "../math/Vector3.h"
@@ -28,6 +29,7 @@ public:
 	virtual void SetParameter(const std::string& name, const math::Vector2& v) = 0;
 	virtual void SetParameter(const std::string& name, const math::Vector3& v) = 0;
 	virtual void SetParameter(const std::string& name, const math::Vector4& v) = 0;
+	virtual void SetParameter(const std::string& name, TexturePtr texture) = 0;
 };
 
 } // namespace sprite

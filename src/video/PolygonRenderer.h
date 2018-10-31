@@ -25,8 +25,10 @@ public:
 
 	struct Vertex
 	{
-		Vertex(const math::Vector3& p);
+		Vertex(const math::Vector3& p, const math::Vector3& v, const math::Vector2& t);
 		math::Vector3 pos;
+		math::Vector3 v1;
+		math::Vector2 texCoord;
 	};
 
 	static PolygonRendererPtr Create(

@@ -2,32 +2,14 @@
 #include "../../video/PolygonRenderer.h"
 
 #include "../../platform/FileIOHub.h"
-
-const char* vertexShaderSource =
-	"#version 330 core\n"
-	"layout (location = 0) in vec3 aPos;\n"
-	"out vec4 vertexColor;\n"
-	"uniform vec3 spriteColor;\n"
-	"void main()\n"
-	"{\n"
-	"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-	"	vertexColor = vec4(aPos.x, aPos.y, 1.0 - aPos.x, 1.0) * vec4(spriteColor, 1.0);"
-	"}\0";
-
-const char* fragmentShaderSource =
-	"#version 330 core\n"
-	"out vec4 FragColor;\n"
-	"in vec4 vertexColor;\n"
-	"void main()\n"
-	"{\n"
-	"   FragColor = vertexColor;\n"
-	"}\n\0";
+#include "../../platform/StdFileManager.h"
 
 int main(int argc, const char * argv[])
 {
 	using namespace sprite;
 	
 	FileIOHubPtr fileIOHub = FileIOHub::Create();
+	FileManagerPtr fileManager(new StdFileManager);
 	
 	VideoPtr video = Video::Create("Sprite", math::Vector2(800.0f, 600.0f), false);
 
@@ -35,10 +17,10 @@ int main(int argc, const char * argv[])
 
 	std::vector<PolygonRenderer::Vertex> vertices =
 	{
-		PolygonRenderer::Vertex(math::Vector3( 0.5f, 0.5f, 0.0f)),
-		PolygonRenderer::Vertex(math::Vector3( 0.5f,-0.5f, 0.0f)),
-		PolygonRenderer::Vertex(math::Vector3(-0.5f,-0.5f, 0.0f)),
-		PolygonRenderer::Vertex(math::Vector3(-0.5f, 0.5f, 0.0f))
+		PolygonRenderer::Vertex(math::Vector3( 0.5f, 0.5f, 0.0f), math::Vector3(1.0f), math::Vector2(1.0f, 1.0f)),
+		PolygonRenderer::Vertex(math::Vector3( 0.5f,-0.5f, 0.0f), math::Vector3(1.0f), math::Vector2(1.0f, 0.0f)),
+		PolygonRenderer::Vertex(math::Vector3(-0.5f,-0.5f, 0.0f), math::Vector3(1.0f), math::Vector2(0.0f, 0.0f)),
+		PolygonRenderer::Vertex(math::Vector3(-0.5f, 0.5f, 0.0f), math::Vector3(1.0f), math::Vector2(0.0f, 1.0f))
 	};
 	std::vector<unsigned int> indices =
 	{
@@ -49,10 +31,10 @@ int main(int argc, const char * argv[])
 
 	vertices =
 	{
-		PolygonRenderer::Vertex(math::Vector3(-1.0f, 1.0f, 0.0f)),
-		PolygonRenderer::Vertex(math::Vector3(-0.9f, 0.0f, 0.0f)),
-		PolygonRenderer::Vertex(math::Vector3( 0.3f, 0.9f, 0.0f)),
-		PolygonRenderer::Vertex(math::Vector3( 0.0f, 0.0f, 0.0f))
+		PolygonRenderer::Vertex(math::Vector3(-1.0f, 1.0f, 0.0f), math::Vector3(1.0f), math::Vector2(1.0f)),
+		PolygonRenderer::Vertex(math::Vector3(-0.9f, 0.0f, 0.0f), math::Vector3(1.0f), math::Vector2(1.0f)),
+		PolygonRenderer::Vertex(math::Vector3( 0.3f, 0.9f, 0.0f), math::Vector3(1.0f), math::Vector2(1.0f)),
+		PolygonRenderer::Vertex(math::Vector3( 0.0f, 0.0f, 0.0f), math::Vector3(1.0f), math::Vector2(1.0f))
 	};
 	indices =
 	{
@@ -60,7 +42,12 @@ int main(int argc, const char * argv[])
 	};
 	PolygonRendererPtr polygonRendererB = PolygonRenderer::Create(vertices, indices, PolygonRenderer::TRIANGLE_STRIP);
 
-	ShaderPtr shader = Shader::Create(video, vertexShaderSource, fragmentShaderSource);
+	std::string vertexShader, fragmentShader;
+	fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "sprite.vs", vertexShader);
+	fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "sprite.fs", fragmentShader);
+	ShaderPtr shader = Shader::Create(video, vertexShader, fragmentShader);
+
+	TexturePtr texture = Texture::Create(video, fileManager, fileIOHub->GetResourceDirectory() + "asantee-logo.png");
 
 	Video::APP_STATUS status;
 	while ((status = video->HandleEvents()) != Video::AS_QUIT)
