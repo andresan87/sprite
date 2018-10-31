@@ -7,6 +7,7 @@
 namespace sprite {
 
 GLVideo::GLVideo(const math::Vector2& resolution) :
+	m_alphaMode(AM_UNKNOWN),
 	m_clearColor(0.0f, 0.0f, 0.0f, 0.0f)
 {
 	m_resolution = resolution;
@@ -68,6 +69,37 @@ void GLVideo::SetupSpriteRenderStates()
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	
+	SetAlphaMode(AM_PIXEL);
+}
+
+void GLVideo::SetAlphaMode(const ALPHA_MODE mode)
+{
+	m_alphaMode = mode;
+	switch(mode)
+	{
+		case AM_ADD:
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_ONE, GL_ONE);
+			break;
+		case AM_MODULATE:
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+			break;
+		case AM_NONE:
+			glDisable(GL_BLEND);
+			break;
+		case AM_PIXEL:
+		default:
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			break;
+	};
+}
+
+Video::ALPHA_MODE GLVideo::GetAlphaMode() const
+{
+	return m_alphaMode;
 }
 
 } // namespace sprite

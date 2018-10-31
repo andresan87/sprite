@@ -30,10 +30,22 @@ public:
 		AS_SKIP
 	};
 
+	enum ALPHA_MODE
+	{
+		AM_PIXEL,
+		AM_ADD,
+		AM_MODULATE,
+		AM_NONE,
+		AM_UNKNOWN
+	};
+
 	static VideoPtr Create(
 		const std::string& title,
 		const math::Vector2& resolution,
 		const bool fullscreen);
+
+	virtual void SetAlphaMode(const ALPHA_MODE mode) = 0;
+	virtual ALPHA_MODE GetAlphaMode() const = 0;
 
 	virtual void SetResolution(const math::Vector2& resolution) = 0;
 	virtual math::Vector2 GetResolution() const = 0;

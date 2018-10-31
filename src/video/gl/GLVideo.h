@@ -16,6 +16,8 @@ class GLVideo : public Video
 	math::Vector2 m_resolution;
 	Color m_clearColor;
 
+	ALPHA_MODE m_alphaMode;
+
 public:
 	GLVideo(const math::Vector2& resolution);
 
@@ -24,6 +26,9 @@ public:
 
 	void BeginRendering();
 	void EndRendering();
+
+	void SetAlphaMode(const ALPHA_MODE mode);
+	ALPHA_MODE GetAlphaMode() const;
 
 	void SetResolution(const math::Vector2& resolution);
 	math::Vector2 GetResolution() const;
