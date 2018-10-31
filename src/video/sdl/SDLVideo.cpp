@@ -33,6 +33,10 @@ SDLVideo::SDLVideo(
 	{
 		flags |= SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS;
 	}
+	else
+	{
+		flags |= SDL_WINDOW_RESIZABLE;
+	}
 
 	if ((m_window = SDL_CreateWindow(
 			title.c_str(),
@@ -81,6 +85,9 @@ Video::APP_STATUS SDLVideo::HandleEvents()
 		case SDL_WINDOWEVENT:
 			switch (event.window.event)
 			{
+				case SDL_WINDOWEVENT_RESIZED:
+					SetResolution(math::Vector2(event.window.data1, event.window.data2));
+					break;
 				case SDL_WINDOWEVENT_FOCUS_GAINED:
 					m_windowHasFocus = true;
 					break;
