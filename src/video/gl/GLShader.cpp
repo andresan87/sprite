@@ -123,7 +123,7 @@ void GLShader::SetParameter(const std::string& name, TexturePtr texture)
 	const GLint location = FindUniformLocation(name, true /*isTexture*/);
 	const GLint texParamIndex = m_textureParamsIndices[name];
 	glUniform1i(location, texParamIndex);
-	
+
 	GLenum textureEnum = 0;
 	switch (texParamIndex)
 	{
@@ -162,7 +162,7 @@ void GLShader::SetParameter(const std::string& name, TexturePtr texture)
 	}
 
 	glActiveTexture(textureEnum);
-	
+
 	GLTexture* texturePtr = (GLTexture*)texture.get();
 	glBindTexture(GL_TEXTURE_2D, texturePtr->GetTexture());
 }
