@@ -61,6 +61,9 @@ GLTexture::GLTexture(
 			return;
 	}
 	
+	m_resolution.x = (float)width;
+	m_resolution.y = (float)height;
+
 	if (math::Util::IsPowerOfTwo(width) && math::Util::IsPowerOfTwo(height))
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
@@ -91,6 +94,11 @@ GLTexture::~GLTexture()
 GLuint GLTexture::GetTexture() const
 {
 	return m_texture;
+}
+
+math::Vector2 GLTexture::GetResolution() const
+{
+	return m_resolution;
 }
 
 } // namespace sprite

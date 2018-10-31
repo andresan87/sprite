@@ -32,6 +32,7 @@
 		AA95469821890E6500FFCA0E /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA95469621890E6500FFCA0E /* Texture.cpp */; };
 		AA95469B21890F1600FFCA0E /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA95469921890F1600FFCA0E /* GLTexture.cpp */; };
 		AA95469E218A2DF800FFCA0E /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA95469C218A2DF700FFCA0E /* Util.cpp */; };
+		AA9F0E36218A5EAA0032A183 /* RenderTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9F0E34218A5EAA0032A183 /* RenderTarget.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -105,6 +106,8 @@
 		AA95469A21890F1600FFCA0E /* GLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLTexture.h; path = ../../../src/video/gl/GLTexture.h; sourceTree = "<group>"; };
 		AA95469C218A2DF700FFCA0E /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Util.cpp; path = ../../../src/math/Util.cpp; sourceTree = "<group>"; };
 		AA95469D218A2DF800FFCA0E /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = ../../../src/math/Util.h; sourceTree = "<group>"; };
+		AA9F0E34218A5EAA0032A183 /* RenderTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderTarget.cpp; path = ../../../src/video/RenderTarget.cpp; sourceTree = "<group>"; };
+		AA9F0E35218A5EAA0032A183 /* RenderTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderTarget.h; path = ../../../src/video/RenderTarget.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,8 @@
 				AA7DDC3F218778FF006E1EC0 /* PolygonRenderer.h */,
 				AA95469621890E6500FFCA0E /* Texture.cpp */,
 				AA95469721890E6500FFCA0E /* Texture.h */,
+				AA9F0E34218A5EAA0032A183 /* RenderTarget.cpp */,
+				AA9F0E35218A5EAA0032A183 /* RenderTarget.h */,
 				AA7DDC2D2183872A006E1EC0 /* SDL */,
 				AA7DDC3121838962006E1EC0 /* GL */,
 			);
@@ -325,6 +330,7 @@
 				AA7DDC4421877BFC006E1EC0 /* GLPolygonRenderer.cpp in Sources */,
 				AA7DDC532188E42D006E1EC0 /* FileBuffer.cpp in Sources */,
 				AA7DDC3421838BE3006E1EC0 /* GLVideo.cpp in Sources */,
+				AA9F0E36218A5EAA0032A183 /* RenderTarget.cpp in Sources */,
 				AA95469B21890F1600FFCA0E /* GLTexture.cpp in Sources */,
 				AA7DDC4A2187B760006E1EC0 /* GLShader.cpp in Sources */,
 				AA9546712188ED1200FFCA0E /* main.mm in Sources */,

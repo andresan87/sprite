@@ -10,6 +10,8 @@ namespace sprite {
 class GLTexture : public Texture
 {
 	GLuint m_texture;
+	
+	math::Vector2 m_resolution;
 
 public:
 	GLTexture(
@@ -18,7 +20,9 @@ public:
 		const std::string& fileName);
 	
 	~GLTexture();
-	
+
+	math::Vector2 GetResolution() const;
+
 	GLuint GetTexture() const;
 };
 

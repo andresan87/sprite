@@ -5,6 +5,8 @@
 
 #include "../platform/FileManager.h"
 
+#include "../math/Vector2.h"
+
 namespace sprite {
 
 class Texture;
@@ -18,6 +20,8 @@ public:
 		const VideoPtr& video,
 		const FileManagerPtr fileManager,
 		const std::string& fileName);
+	
+	virtual math::Vector2 GetResolution() const = 0;
 };
 
 } // namespace sprite
