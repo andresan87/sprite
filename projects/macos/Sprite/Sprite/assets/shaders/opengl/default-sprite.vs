@@ -26,6 +26,9 @@ void main()
 	// adjust origin
 	vertexPos = vertexPos - vec4(origin * size, 0.0, 0.0);
 
+	// translate
+	vertexPos = vertexPos + vec4(spritePos.x,-spritePos.y, 0.0, 0.0);
+
 	// scale to match fixed virtual
 	vertexPos.x /= (virtualTargetResolution.x * 0.5);
 	vertexPos.y /= (virtualTargetResolution.y * 0.5);
