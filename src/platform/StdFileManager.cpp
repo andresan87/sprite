@@ -1,17 +1,8 @@
 #include "StdFileManager.h"
 
-namespace sprite {
+#include <fstream>
 
-static FILE* LoadFile(const std::string& fileName)
-{
-	FILE* file = 0;
-	#if _MSC_VER >= 1500
-		fopen_s(&file, fileName.c_str(), "rb");
-	#else
-		file = fopen(fileName.c_str(), "rb");
-	#endif
-	return file;
-}
+namespace sprite {
 
 bool StdFileManager::IsLoaded() const
 {
@@ -20,34 +11,31 @@ bool StdFileManager::IsLoaded() const
 
 bool StdFileManager::GetFileBuffer(const std::string& fileName, FileBufferPtr& outBuff)
 {
-	FILE* file = LoadFile(fileName);
-	if (!file)
+	std::ifstream file(fileName, std::ios::binary | std::ios::ate);
+
+	if (file.fail())
 	{
 		return false;
 	}
-	
-	fseek(file, 0, SEEK_END);
-	const long len = ftell(file);
-	fseek(file, 0, SEEK_SET);
 
-	outBuff = FileBufferPtr(new FileBuffer((unsigned int)len));
-	fread(outBuff->GetAddress(), len, 1, file);
-	fclose(file);
-	return true;
+	std::streamsize size = file.tellg();
+	file.seekg(0, std::ios::beg);
+
+	outBuff = FileBufferPtr(new FileBuffer((unsigned int)size));
+	if (!file.read((char*)outBuff->GetAddress(), size).fail())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool StdFileManager::FileExists(const std::string& fileName) const
 {
-	FILE* file = LoadFile(fileName);
-	if (!file)
-	{
-		return false;
-	}
-	else
-	{
-		fclose(file);
-		return true;
-	}
+	std::ifstream file(fileName, std::ios::binary);
+	return (!file.fail());
 }
 
 bool StdFileManager::IsPacked() const
