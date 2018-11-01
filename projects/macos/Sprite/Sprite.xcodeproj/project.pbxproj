@@ -28,11 +28,12 @@
 		AA9546812188F34500FFCA0E /* StdFileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9546802188F34500FFCA0E /* StdFileManager.cpp */; };
 		AA9546842188F4CC00FFCA0E /* FileIOHub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9546822188F4CC00FFCA0E /* FileIOHub.cpp */; };
 		AA9546872188F68500FFCA0E /* MacOSFileIOHub.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA9546862188F68500FFCA0E /* MacOSFileIOHub.mm */; };
-		AA95468A2188FD5B00FFCA0E /* assets in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA9546892188FD5B00FFCA0E /* assets */; };
+		AA95468A2188FD5B00FFCA0E /* assets in Copy Files */ = {isa = PBXBuildFile; fileRef = AA9546892188FD5B00FFCA0E /* assets */; };
 		AA95469821890E6500FFCA0E /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA95469621890E6500FFCA0E /* Texture.cpp */; };
 		AA95469B21890F1600FFCA0E /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA95469921890F1600FFCA0E /* GLTexture.cpp */; };
 		AA95469E218A2DF800FFCA0E /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA95469C218A2DF700FFCA0E /* Util.cpp */; };
 		AA9F0E36218A5EAA0032A183 /* RenderTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9F0E34218A5EAA0032A183 /* RenderTarget.cpp */; };
+		AA9F0E3A218B75680032A183 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9F0E39218B75680032A183 /* Sprite.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,14 +47,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AA9546882188FD3400FFCA0E /* CopyFiles */ = {
+		AA9546882188FD3400FFCA0E /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				AA95468A2188FD5B00FFCA0E /* assets in CopyFiles */,
+				AA95468A2188FD5B00FFCA0E /* assets in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -108,6 +110,8 @@
 		AA95469D218A2DF800FFCA0E /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = ../../../src/math/Util.h; sourceTree = "<group>"; };
 		AA9F0E34218A5EAA0032A183 /* RenderTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderTarget.cpp; path = ../../../src/video/RenderTarget.cpp; sourceTree = "<group>"; };
 		AA9F0E35218A5EAA0032A183 /* RenderTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderTarget.h; path = ../../../src/video/RenderTarget.h; sourceTree = "<group>"; };
+		AA9F0E38218B75680032A183 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite.h; path = ../../../src/sprite/Sprite.h; sourceTree = "<group>"; };
+		AA9F0E39218B75680032A183 /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sprite.cpp; path = ../../../src/sprite/Sprite.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				AA9546892188FD5B00FFCA0E /* assets */,
+				AA9F0E37218B752C0032A183 /* Sprite */,
 				AA7DDC1021825C5D006E1EC0 /* Platform */,
 				AA9546722188ED1D00FFCA0E /* Math */,
 				AA7DDC2921838645006E1EC0 /* Video */,
@@ -250,6 +255,15 @@
 			name = Math;
 			sourceTree = "<group>";
 		};
+		AA9F0E37218B752C0032A183 /* Sprite */ = {
+			isa = PBXGroup;
+			children = (
+				AA9F0E39218B75680032A183 /* Sprite.cpp */,
+				AA9F0E38218B75680032A183 /* Sprite.h */,
+			);
+			name = Sprite;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -261,7 +275,7 @@
 				AA7DDBEB2182377D006E1EC0 /* Frameworks */,
 				AA7DDBEC2182377D006E1EC0 /* Resources */,
 				AA7DDC0E21823B43006E1EC0 /* CopyFiles */,
-				AA9546882188FD3400FFCA0E /* CopyFiles */,
+				AA9546882188FD3400FFCA0E /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -326,6 +340,7 @@
 				AA95469821890E6500FFCA0E /* Texture.cpp in Sources */,
 				AA95467C2188ED3300FFCA0E /* Color.cpp in Sources */,
 				AA7DDC4121877900006E1EC0 /* PolygonRenderer.cpp in Sources */,
+				AA9F0E3A218B75680032A183 /* Sprite.cpp in Sources */,
 				AA9546842188F4CC00FFCA0E /* FileIOHub.cpp in Sources */,
 				AA7DDC4421877BFC006E1EC0 /* GLPolygonRenderer.cpp in Sources */,
 				AA7DDC532188E42D006E1EC0 /* FileBuffer.cpp in Sources */,
