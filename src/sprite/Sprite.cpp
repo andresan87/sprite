@@ -41,6 +41,12 @@ void Sprite::SetVirtualScreenResolution(const math::Vector2& resolution)
 	m_virtualScreenResolution = resolution;
 }
 
+void Sprite::SetVirtualScreenHeight(const math::Vector2& currentScreenResolution, const float height)
+{
+	m_virtualScreenResolution.x = currentScreenResolution.x * (height / currentScreenResolution.y);
+	m_virtualScreenResolution.y = height;
+}
+
 Sprite::Sprite(
 	VideoPtr video,
 	FileManagerPtr fileManager,

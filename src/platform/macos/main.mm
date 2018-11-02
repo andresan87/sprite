@@ -21,7 +21,9 @@ int main(int argc, const char * argv[])
 	{
 		if (status == Video::AS_SKIP)
 			continue;
-		
+
+		Sprite::SetVirtualScreenHeight(video->GetResolution(), 720.0f);
+
 		video->BeginRendering();
 		{
 			pixelPerfectSpaceShip->Draw(math::Vector2(0.0f), math::Vector2(0.5f));

@@ -26,6 +26,7 @@ class Sprite
 
 public:
 	static void SetVirtualScreenResolution(const math::Vector2& resolution);
+	static void SetVirtualScreenHeight(const math::Vector2& currentScreenResolution, const float height);
 
 	Sprite(
 		VideoPtr video,
