@@ -3,6 +3,8 @@
 
 #include "../Video.h"
 
+#include "../../platform/Logger.h"
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdocumentation"
 #include <SDL2/SDL.h>
@@ -17,6 +19,8 @@ class GLVideo : public Video
 	Color m_clearColor;
 
 	ALPHA_MODE m_alphaMode;
+
+	LoggerPtr m_logger;
 
 public:
 	GLVideo(const math::Vector2& resolution);
@@ -34,6 +38,8 @@ public:
 	math::Vector2 GetResolution() const;
 
 	void SetupSpriteRenderStates();
+
+	void Log(const std::string& message, const Logger::LOG_MESSAGE_TYPE type);
 };
 
 } // namespace sprite

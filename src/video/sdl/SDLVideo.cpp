@@ -4,6 +4,9 @@
 
 namespace sprite {
 
+float SDLVideo::m_mouseWheel = 0.0f;
+std::string SDLVideo::m_lastCharInput;
+
 VideoPtr Video::Create(
 	const std::string& title,
 	const math::Vector2& resolution,
@@ -19,12 +22,11 @@ SDLVideo::SDLVideo(
 	const bool fullscreen) :
 	GLVideo(resolution),
 	m_windowHasFocus(false),
-	m_windowIsVisible(false),
-	m_mouseWheel(0.0f)
+	m_windowIsVisible(false)
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
 	{
-		Log("SDL initialization failed", Video::LMT_ERROR);
+		Log("SDL initialization failed", Logger::LMT_ERROR);
 		return;
 	}
 
@@ -124,18 +126,6 @@ void SDLVideo::EndRendering()
 {
 	GLVideo::EndRendering();
 	SDL_GL_SwapWindow(m_window);
-}
-
-void SDLVideo::Log(const std::string& message, const Video::LOG_MESSAGE_TYPE type)
-{
-	if (type == Video::LMT_ERROR)
-	{
-		std::cerr << "ERROR" << " " << message << std::endl;
-	}
-	else
-	{
-		std::cout << message << std::endl;
-	}
 }
 
 bool SDLVideo::IsSuccessful() const

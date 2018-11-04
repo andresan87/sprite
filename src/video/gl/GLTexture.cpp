@@ -40,7 +40,7 @@ GLTexture::GLTexture(
 
 	if (data == NULL)
 	{
-		video->Log("GLTexture couldn't load file " + fileName, Video::LMT_ERROR);
+		video->Log("GLTexture couldn't load file " + fileName, Logger::LMT_ERROR);
 		return;
 	}
 
@@ -57,7 +57,7 @@ GLTexture::GLTexture(
 		default:
 			stbi_image_free(data);
 			glDeleteTextures(1, &m_texture);
-			video->Log("GLTexture invalid format for file " + fileName, Video::LMT_ERROR);
+			video->Log("GLTexture invalid format for file " + fileName, Logger::LMT_ERROR);
 			return;
 	}
 	

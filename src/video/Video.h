@@ -7,6 +7,8 @@
 #include "../math/Vector2.h"
 #include "../math/Color.h"
 
+#include "../platform/Logger.h"
+
 namespace sprite {
 
 class Video;
@@ -16,13 +18,6 @@ typedef std::shared_ptr<Video> VideoPtr;
 class Video
 {
 public:
-	enum LOG_MESSAGE_TYPE
-	{
-		LMT_INFO,
-		LMT_WARNING,
-		LMT_ERROR
-	};
-
 	enum APP_STATUS
 	{
 		AS_OK,
@@ -56,7 +51,7 @@ public:
 	virtual void BeginRendering() = 0;
 	virtual void EndRendering() = 0;
 
-	virtual void Log(const std::string& message, const LOG_MESSAGE_TYPE type) = 0;
+	virtual void Log(const std::string& message, const Logger::LOG_MESSAGE_TYPE type) = 0;
 	virtual APP_STATUS HandleEvents() = 0;
 };
 

@@ -34,7 +34,7 @@ GLShader::GLShader(
 	if (!success)
 	{
 		glGetShaderInfoLog(vertexShader, MAX_MESSAGE_SIZE, NULL, infoLog);
-		video->Log("glCompileShader vertex: " + std::string(infoLog), Video::LMT_ERROR);
+		video->Log("glCompileShader vertex: " + std::string(infoLog), Logger::LMT_ERROR);
 	}
 
 	GLint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -45,7 +45,7 @@ GLShader::GLShader(
 	if (!success)
 	{
 		glGetShaderInfoLog(fragmentShader, MAX_MESSAGE_SIZE, NULL, infoLog);
-		video->Log("glCompileShader fragment: " + std::string(infoLog), Video::LMT_ERROR);
+		video->Log("glCompileShader fragment: " + std::string(infoLog), Logger::LMT_ERROR);
 	}
 
 	m_shaderProgram = glCreateProgram();
@@ -57,7 +57,7 @@ GLShader::GLShader(
 	if (!success)
 	{
 		glGetProgramInfoLog(m_shaderProgram, MAX_MESSAGE_SIZE, NULL, infoLog);
-		video->Log("glLinkProgram: " + std::string(infoLog), Video::LMT_ERROR);
+		video->Log("glLinkProgram: " + std::string(infoLog), Logger::LMT_ERROR);
 	}
 	
 	glDetachShader(m_shaderProgram, vertexShader);

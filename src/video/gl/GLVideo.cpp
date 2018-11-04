@@ -8,7 +8,8 @@ namespace sprite {
 
 GLVideo::GLVideo(const math::Vector2& resolution) :
 	m_alphaMode(AM_UNKNOWN),
-	m_clearColor(0.0f, 0.0f, 0.0f, 0.0f)
+	m_clearColor(0.0f, 0.0f, 0.0f, 0.0f),
+	m_logger(Logger::Create())
 {
 	m_resolution = resolution;
 }
@@ -47,7 +48,7 @@ void GLVideo::EndRendering()
 		while ((err = glGetError()) != GL_NO_ERROR)
 		{
 			std::stringstream ss; ss << "OpenGL error: " << err;
-			Log(ss.str(), Video::LMT_ERROR);
+			m_logger->Log(ss.str(), Logger::LMT_ERROR);
 		}
 	#endif
 }
@@ -100,6 +101,11 @@ void GLVideo::SetAlphaMode(const ALPHA_MODE mode)
 Video::ALPHA_MODE GLVideo::GetAlphaMode() const
 {
 	return m_alphaMode;
+}
+
+void GLVideo::Log(const std::string& message, const Logger::LOG_MESSAGE_TYPE type)
+{
+	m_logger->Log(message, type);
 }
 
 } // namespace sprite

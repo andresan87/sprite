@@ -13,15 +13,15 @@ namespace sprite {
 
 class SDLVideo : public GLVideo
 {
+	friend class SDLInput;
+	static float m_mouseWheel;
+	static std::string m_lastCharInput;
+
 	SDL_Window* m_window;
 	SDL_GLContext m_glcontext;
 	
 	bool m_windowHasFocus;
 	bool m_windowIsVisible;
-	
-	float m_mouseWheel;
-	
-	std::string m_lastCharInput;
 
 public:
 	SDLVideo(
@@ -34,8 +34,6 @@ public:
 	APP_STATUS HandleEvents();
 	
 	void EndRendering();
-
-	void Log(const std::string& message, const LOG_MESSAGE_TYPE type);
 
 	bool IsSuccessful() const;
 };
