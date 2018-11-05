@@ -17,11 +17,6 @@ Color::Color(const float fr, const float fg, const float fb, const float fa) :
 {
 }
 
-Color::Color(const float rgba) :
-	math::Vector4(rgba)
-{
-}
-
 Color::Color(const uint32_t color)
 {
 	uint32_t a, r, g, b;

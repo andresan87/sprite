@@ -14,7 +14,6 @@ struct Color : public math::Vector4
 	Color();
 	Color(const Color& v);
 	Color(const float fr, const float fg, const float fb, const float fa);
-	Color(const float rgba);
 	Color(const uint32_t color);
 
 	uint32_t To32BitARGB() const;
