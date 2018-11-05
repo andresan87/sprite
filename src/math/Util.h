@@ -9,9 +9,13 @@ namespace math {
 class Util
 {
 public:
+	static const float PI;
+
 	static bool IsPowerOfTwo(const uint64_t n);
 	static double FindNextPowerOfTwoValue(const double n);
-	
+	static float RadianToDegree(const float angle);
+	static float DegreeToRadian(const float angle);
+
 	template <class T>
 	static inline T Max(const T &a, const T &b)
 	{

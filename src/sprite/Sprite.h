@@ -26,6 +26,7 @@ class Sprite
 
 public:
 	static void SetVirtualScreenResolution(const math::Vector2& resolution);
+	static math::Vector2 GetVirtualScreenResolution();
 	static void SetVirtualScreenHeight(const math::Vector2& currentScreenResolution, const float height);
 
 	Sprite(
@@ -36,8 +37,20 @@ public:
 
 	bool IsLoaded() const;
 	math::Vector2 GetSize() const;
-	void Draw(const math::Vector2& pos, const math::Vector2& origin) const;
-	void Draw(const math::Vector2& pos, const math::Vector2& size, const math::Vector2& origin) const;
+	void Draw(
+		const math::Vector2& pos,
+		const math::Vector2& origin,
+		const float scale = 1.0f,
+		const float angle = 0.0f) const;
+
+	void Draw(
+		const math::Vector2& pos,
+		const math::Vector2& size,
+		const math::Vector2& origin,
+		const math::Vector4& color,
+		const float angle,
+		const bool flipX,
+		const bool flipY) const;
 };
 
 } // namespace sprite
