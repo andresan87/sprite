@@ -27,11 +27,12 @@ void main()
 	vertexPos = vertexPos - vec4(origin * size, 0.0, 0.0);
 
 	// translate
-	vertexPos = vertexPos + vec4(spritePos.x,-spritePos.y, 0.0, 0.0);
+	vec2 halfScreenSize = virtualTargetResolution / 2.0;
+	vertexPos = vertexPos + vec4(spritePos.x - halfScreenSize.x,-spritePos.y + halfScreenSize.y, 0.0, 0.0);
 
 	// scale to match fixed virtual
-	vertexPos.x /= (virtualTargetResolution.x * 0.5);
-	vertexPos.y /= (virtualTargetResolution.y * 0.5);
+	vertexPos.x /= halfScreenSize.x;
+	vertexPos.y /= halfScreenSize.y;
 
 	gl_Position = vertexPos;
 	outColor = vec4(1.0, 1.0, 1.0, 1.0);
