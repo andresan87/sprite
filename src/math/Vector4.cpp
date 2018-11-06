@@ -26,6 +26,14 @@ Vector4::Vector4(const float fx, const float fy, const float fz, const float fw)
 	w = fw;
 }
 
+Vector4::Vector4(const Vector2& a, const Vector2& b)
+{
+	x = a.x;
+	y = a.y;
+	z = b.x;
+	w = b.y;
+}
+
 Vector4::Vector4(float xyzw)
 {
 	x = y = z = w = xyzw;

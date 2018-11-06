@@ -1,4 +1,5 @@
 #include "../../sprite/Sprite.h"
+#include "../../sprite/SpriteRects.h"
 
 #include "../../input/Input.h"
 
@@ -20,6 +21,11 @@ int main(int argc, const char * argv[])
 
 	SpritePtr spriteImage(new Sprite(video, fileManager, fileIOHub->GetResourceDirectory() + "sprite.jpg"));
 	SpritePtr pixelPerfectSpaceShip(new Sprite(video, fileManager, fileIOHub->GetResourceDirectory() + "space-ship.png"));
+	SpritePtr demon(new Sprite(video, fileManager, fileIOHub->GetResourceDirectory() + "spider_demon.png"));
+
+	SpriteRects demonRects;
+	demonRects.SetRects(4, 1);
+	unsigned int demonFrame = 0;
 
 	video->SetClearColor(Color(0xFF336699));
 
@@ -45,6 +51,12 @@ int main(int argc, const char * argv[])
 		if (input->GetKeyState(Input::K_Y) == Input::KS_HIT)
 			flipY = !flipY;
 
+		if (input->GetKeyState(Input::K_E) == Input::KS_HIT)
+			demonFrame--;
+
+		if (input->GetKeyState(Input::K_R) == Input::KS_HIT)
+			demonFrame++;
+
 		Sprite::SetVirtualScreenHeight(video->GetResolution(), 720.0f);
 
 		video->BeginRendering();
@@ -53,6 +65,9 @@ int main(int argc, const char * argv[])
 			pixelPerfectSpaceShip->Draw(Vector2(0.0f), Vector2(0.5f), 1.0f, angle);
 			pixelPerfectSpaceShip->Draw(Vector2(256.0f, 512.0f), Vector2(128.0f), Vector2(0.5f), Color(0x77FF0000), 90.0f, false, false);
 			pixelPerfectSpaceShip->Draw(input->GetTouchPos(0), Vector2(0.5f, 1.0f), 1.5f, -angle);
+
+			demon->SetRect(demonRects.GetRect(demonFrame));
+			demon->Draw(Vector2(800.0f, 0.0f), Vector2(0.5f, 0.0f), 1.0f);
 		}
 		video->EndRendering();
 	}

@@ -10,6 +10,7 @@ uniform vec4 size_origin;
 uniform vec4 spritePos_virtualTargetResolution;
 uniform vec4 color;
 uniform vec4 flipAdd_flipMul;
+uniform vec4 rectPos_rectSize;
 uniform float angle;
 
 void main()
@@ -24,6 +25,9 @@ void main()
 
 	vec2 flipAdd = vec2(flipAdd_flipMul.x, flipAdd_flipMul.y);
 	vec2 flipMul = vec2(flipAdd_flipMul.z, flipAdd_flipMul.w);
+
+	vec2 rectPos  = vec2(rectPos_rectSize.x, rectPos_rectSize.y);
+	vec2 rectSize = vec2(rectPos_rectSize.z, rectPos_rectSize.w);
 
 	// apply flip
 	vertexPos = vertexPos * vec4(flipMul.x, flipMul.y, 1.0, 1.0) + vec4(flipAdd.x, flipAdd.y, 0.0, 0.0);
@@ -50,7 +54,11 @@ void main()
 	vertexPos.x /= halfScreenSize.x;
 	vertexPos.y /= halfScreenSize.y;
 
+	// map sprite rect
+	vec2 texCoord = inTexCoord * rectSize;
+	texCoord = texCoord + rectPos;
+	outTexCoord = texCoord;
+
 	gl_Position = vertexPos;
 	outColor = color;
-	outTexCoord = inTexCoord;
 }

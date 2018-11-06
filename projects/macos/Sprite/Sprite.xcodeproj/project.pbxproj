@@ -39,6 +39,8 @@
 		AA9F0E4A218F7F8C0032A183 /* SDLJoystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9F0E47218F7F8C0032A183 /* SDLJoystick.cpp */; };
 		AA9F0E4F218F858B0032A183 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9F0E4C218F858B0032A183 /* Logger.cpp */; };
 		AA9F0E50218F858B0032A183 /* StdLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9F0E4D218F858B0032A183 /* StdLogger.cpp */; };
+		AA9F0E5321922DFB0032A183 /* Rect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9F0E5221922DFB0032A183 /* Rect.cpp */; };
+		AA9F0E56219236D90032A183 /* SpriteRects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA9F0E54219236D90032A183 /* SpriteRects.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -127,6 +129,10 @@
 		AA9F0E4C218F858B0032A183 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logger.cpp; path = ../../../../src/platform/Logger.cpp; sourceTree = "<group>"; };
 		AA9F0E4D218F858B0032A183 /* StdLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StdLogger.cpp; path = ../../../../src/platform/StdLogger.cpp; sourceTree = "<group>"; };
 		AA9F0E4E218F858B0032A183 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logger.h; path = ../../../../src/platform/Logger.h; sourceTree = "<group>"; };
+		AA9F0E5121922DD60032A183 /* Rect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rect.h; path = ../../../src/math/Rect.h; sourceTree = "<group>"; };
+		AA9F0E5221922DFB0032A183 /* Rect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Rect.cpp; path = ../../../src/math/Rect.cpp; sourceTree = "<group>"; };
+		AA9F0E54219236D90032A183 /* SpriteRects.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SpriteRects.cpp; path = ../../../src/sprite/SpriteRects.cpp; sourceTree = "<group>"; };
+		AA9F0E55219236D90032A183 /* SpriteRects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpriteRects.h; path = ../../../src/sprite/SpriteRects.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +277,8 @@
 				AA95467A2188ED3300FFCA0E /* Vector3.h */,
 				AA9546772188ED3300FFCA0E /* Vector4.cpp */,
 				AA9546732188ED3300FFCA0E /* Vector4.h */,
+				AA9F0E5221922DFB0032A183 /* Rect.cpp */,
+				AA9F0E5121922DD60032A183 /* Rect.h */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -280,6 +288,8 @@
 			children = (
 				AA9F0E39218B75680032A183 /* Sprite.cpp */,
 				AA9F0E38218B75680032A183 /* Sprite.h */,
+				AA9F0E54219236D90032A183 /* SpriteRects.cpp */,
+				AA9F0E55219236D90032A183 /* SpriteRects.h */,
 			);
 			name = Sprite;
 			sourceTree = "<group>";
@@ -385,6 +395,7 @@
 				AA9F0E4F218F858B0032A183 /* Logger.cpp in Sources */,
 				AA9F0E3A218B75680032A183 /* Sprite.cpp in Sources */,
 				AA9546842188F4CC00FFCA0E /* FileIOHub.cpp in Sources */,
+				AA9F0E56219236D90032A183 /* SpriteRects.cpp in Sources */,
 				AA9F0E49218F7F8C0032A183 /* SDLInput.cpp in Sources */,
 				AA7DDC4421877BFC006E1EC0 /* GLPolygonRenderer.cpp in Sources */,
 				AA7DDC532188E42D006E1EC0 /* FileBuffer.cpp in Sources */,
@@ -394,6 +405,7 @@
 				AA95469B21890F1600FFCA0E /* GLTexture.cpp in Sources */,
 				AA7DDC4A2187B760006E1EC0 /* GLShader.cpp in Sources */,
 				AA9546712188ED1200FFCA0E /* main.mm in Sources */,
+				AA9F0E5321922DFB0032A183 /* Rect.cpp in Sources */,
 				AA7DDC472187B572006E1EC0 /* Shader.cpp in Sources */,
 				AA7DDC2C21838653006E1EC0 /* Video.cpp in Sources */,
 				AA9546872188F68500FFCA0E /* MacOSFileIOHub.mm in Sources */,

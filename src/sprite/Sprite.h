@@ -5,6 +5,8 @@
 
 #include "../platform/FileManager.h"
 
+#include "SpriteRects.h"
+
 namespace sprite {
 
 class Sprite;
@@ -23,6 +25,8 @@ class Sprite
 	float m_pixelDensity;
 
 	Video::ALPHA_MODE m_alphaMode;
+
+	math::Rect m_rect;
 
 public:
 	static void SetVirtualScreenResolution(const math::Vector2& resolution);
@@ -51,6 +55,9 @@ public:
 		const float angle,
 		const bool flipX,
 		const bool flipY) const;
+
+	void SetRect(const math::Rect& rect);
+	math::Rect GetRect() const;
 };
 
 } // namespace sprite

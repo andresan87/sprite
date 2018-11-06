@@ -73,7 +73,9 @@ bool Sprite::IsLoaded() const
 
 math::Vector2 Sprite::GetSize() const
 {
-	return (IsLoaded()) ? (m_texture->GetResolution() / m_pixelDensity) : (math::Vector2(0.0f));
+	return (IsLoaded())
+		? ((m_texture->GetResolution() / m_pixelDensity) * m_rect.size)
+		: (math::Vector2(0.0f));
 }
 
 void Sprite::Draw(
@@ -111,12 +113,23 @@ void Sprite::Draw(
 	m_polygonRenderer->BeginRendering(shader);
 		shader->SetParameter("angle", math::Util::DegreeToRadian(angle));
 		shader->SetParameter("color", color);
-		shader->SetParameter("size_origin", math::Vector4(size.x, size.y, origin.x, origin.y));
-		shader->SetParameter("spritePos_virtualTargetResolution", math::Vector4(pos.x, pos.y, m_virtualScreenResolution.x, m_virtualScreenResolution.y));
+		shader->SetParameter("size_origin", math::Vector4(size, origin));
+		shader->SetParameter("spritePos_virtualTargetResolution", math::Vector4(pos, m_virtualScreenResolution));
 		shader->SetParameter("diffuse", m_texture);
-		shader->SetParameter("flipAdd_flipMul", math::Vector4(flipAdd.x, flipAdd.y, flipMul.x, flipMul.y));
+		shader->SetParameter("flipAdd_flipMul", math::Vector4(flipAdd, flipMul));
+		shader->SetParameter("rectPos_rectSize", math::Vector4(m_rect.pos, m_rect.size));
 		m_polygonRenderer->Render();
 	m_polygonRenderer->EndRendering();
+}
+
+void Sprite::SetRect(const math::Rect& rect)
+{
+	m_rect = rect;
+}
+
+math::Rect Sprite::GetRect() const
+{
+	return m_rect;
 }
 
 } // namespace sprite

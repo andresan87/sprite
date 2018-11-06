@@ -1,6 +1,8 @@
 #ifndef SPRITE_MATH_VECTOR4_H_
 #define SPRITE_MATH_VECTOR4_H_
 
+#include "Vector2.h"
+
 namespace sprite {
 namespace math {
 
@@ -14,6 +16,7 @@ struct Vector4 : public PODVector4
 	Vector4();
 	Vector4(const Vector4& v);
 	Vector4(const float fx, const float fy, const float fz, const float fw);
+	Vector4(const Vector2& a, const Vector2& b);
 	Vector4(const float xyzw);
 	float Length() const;
 	float SquaredLength() const;
