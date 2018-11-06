@@ -5,7 +5,7 @@
 
 #include "GLInclude.h"
 
-#include <map>
+#include "../../utilities/tsl/hopscotch_map.h"
 
 namespace sprite {
 
@@ -13,8 +13,8 @@ class GLShader : public Shader
 {
 	GLuint m_shaderProgram;
 	
-	std::map<std::string, GLint> m_parameters;
-	std::map<std::string, GLint> m_textureParamsIndices;
+	tsl::hopscotch_map<std::string, GLint> m_parameters;
+	tsl::hopscotch_map<std::string, GLint> m_textureParamsIndices;
 
 	GLint FindUniformLocation(const std::string& name, const bool isTexture);
 	

@@ -69,7 +69,7 @@ GLShader::GLShader(
 
 GLint GLShader::FindUniformLocation(const std::string& name, const bool isTexture)
 {
-	std::map<std::string, GLint>::iterator iter = m_parameters.find(name);
+	tsl::hopscotch_map<std::string, GLint>::iterator iter = m_parameters.find(name);
 	if (iter != m_parameters.end())
 	{
 		return iter->second;
