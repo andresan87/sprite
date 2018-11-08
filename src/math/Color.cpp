@@ -2,9 +2,9 @@
 
 namespace sprite {
 
-Color::Color()
+Color::Color() :
+	math::Vector4(1.0f)
 {
-	x = y = z = w = 0.0f;
 }
 
 Color::Color(const Color& v) :

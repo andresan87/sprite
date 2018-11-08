@@ -14,10 +14,10 @@ Vector2::Vector2()
 	x = y = 0.0f;
 }
 
-Vector2::Vector2(const Vector2& v2)
+Vector2::Vector2(const Vector2& v)
 {
-	x = v2.x;
-	y = v2.y;
+	x = v.x;
+	y = v.y;
 }
 
 Vector2::Vector2(const float fx, const float fy)
@@ -149,20 +149,20 @@ bool Vector2::operator == (const Vector2& v) const
 	#endif
 }
 
-bool Vector2::operator != (const Vector2& v2) const
+bool Vector2::operator != (const Vector2& v) const
 {
-	return !(*this == v2);
+	return !(*this == v);
 }
 
-Vector2& Vector2::operator += (const Vector2& v2)
+Vector2& Vector2::operator += (const Vector2& v)
 {
-	*this = Vector2(x, y) + v2;
+	*this = Vector2(x, y) + v;
 	return *this;
 }
 
-Vector2& Vector2::operator -= (const Vector2& v2)
+Vector2& Vector2::operator -= (const Vector2& v)
 {
-	*this = Vector2(x, y) - v2;
+	*this = Vector2(x, y) - v;
 	return *this;
 }
 
