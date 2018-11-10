@@ -8,7 +8,8 @@ namespace sprite {
 
 PolygonRendererPtr Sprite::m_polygonRenderer;
 ShaderPtr Sprite::m_defaultShader;
-math::Vector2 Sprite::m_virtualScreenResolution = math::Vector2(1280.0f, 720.0f);
+math::Vector2 Sprite::m_virtualScreenResolution(1280.0f, 720.0f);
+float Sprite::m_parallaxIntensity = 0.0f;
 
 void Sprite::Initialize(VideoPtr video, FileManagerPtr fileManager)
 {
@@ -36,6 +37,16 @@ void Sprite::Initialize(VideoPtr video, FileManagerPtr fileManager)
 		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.fs", fragmentShader);
 		m_defaultShader = Shader::Create(video, vertexShader, fragmentShader);
 	}
+}
+
+void Sprite::SetParallaxIntensity(const float intensity)
+{
+	m_parallaxIntensity = intensity;
+}
+
+float Sprite::GetParallaxIntensity()
+{
+	return m_parallaxIntensity;
 }
 
 void Sprite::SetVirtualScreenResolution(const math::Vector2& resolution)
@@ -79,7 +90,7 @@ math::Vector2 Sprite::GetSize() const
 }
 
 void Sprite::Draw(
-	const math::Vector2& pos,
+	const math::Vector3& pos,
 	const math::Vector2& origin,
 	const float scale,
 	const float angle) const
@@ -88,7 +99,7 @@ void Sprite::Draw(
 }
 
 void Sprite::Draw(
-		const math::Vector2& pos,
+		const math::Vector3& pos,
 		const math::Vector2& size,
 		const math::Vector2& origin,
 		const math::Vector4& color,
@@ -96,8 +107,10 @@ void Sprite::Draw(
 		const bool flipX,
 		const bool flipY) const
 {
-	math::Vector2 flipMul = math::Vector2(1.0f, 1.0f);
-	math::Vector2 flipAdd = math::Vector2(0.0f, 0.0f);
+	using namespace math;
+
+	Vector2 flipMul = Vector2(1.0f);
+	Vector2 flipAdd = Vector2(0.0f);
 	if (flipX)
 	{
 		flipMul.x =-1.0f;
@@ -111,13 +124,13 @@ void Sprite::Draw(
 
 	const ShaderPtr& shader = m_defaultShader;
 	m_polygonRenderer->BeginRendering(shader);
-		shader->SetParameter("angle", math::Util::DegreeToRadian(angle));
 		shader->SetParameter("color", color);
-		shader->SetParameter("size_origin", math::Vector4(size, origin));
-		shader->SetParameter("spritePos_virtualTargetResolution", math::Vector4(pos, m_virtualScreenResolution));
+		shader->SetParameter("size_origin", Vector4(size, origin));
+		shader->SetParameter("spritePos_virtualTargetResolution", Vector4(Vector2(pos.x, pos.y), m_virtualScreenResolution));
 		shader->SetParameter("diffuse", m_texture);
-		shader->SetParameter("flipAdd_flipMul", math::Vector4(flipAdd, flipMul));
-		shader->SetParameter("rectPos_rectSize", math::Vector4(m_rect.pos, m_rect.size));
+		shader->SetParameter("flipAdd_flipMul", Vector4(flipAdd, flipMul));
+		shader->SetParameter("rectPos_rectSize", Vector4(m_rect.pos, m_rect.size));
+		shader->SetParameter("angle_parallaxIntensity_zPos", Vector4(Util::DegreeToRadian(angle), m_parallaxIntensity, pos.z, 0.0f));
 		m_polygonRenderer->Render();
 	m_polygonRenderer->EndRendering();
 }

@@ -11,7 +11,7 @@ uniform vec4 spritePos_virtualTargetResolution;
 uniform vec4 color;
 uniform vec4 flipAdd_flipMul;
 uniform vec4 rectPos_rectSize;
-uniform float angle;
+uniform vec4 angle_parallaxIntensity_zPos;
 
 void main()
 {
@@ -28,6 +28,10 @@ void main()
 
 	vec2 rectPos  = vec2(rectPos_rectSize.x, rectPos_rectSize.y);
 	vec2 rectSize = vec2(rectPos_rectSize.z, rectPos_rectSize.w);
+
+	float angle = angle_parallaxIntensity_zPos.x;
+	float parallaxIntensity = angle_parallaxIntensity_zPos.y;
+	float zPos = angle_parallaxIntensity_zPos.z;
 
 	// apply flip
 	vertexPos = vertexPos * vec4(flipMul.x, flipMul.y, 1.0, 1.0) + vec4(flipAdd.x, flipAdd.y, 0.0, 0.0);
@@ -47,8 +51,15 @@ void main()
 		vertexPos.w);
 
 	// translate
+	vertexPos = vertexPos + vec4(spritePos.x,-spritePos.y, 0.0, 0.0);
+
+	// compute parallax offset
 	vec2 halfScreenSize = virtualTargetResolution / 2.0;
-	vertexPos = vertexPos + vec4(spritePos.x - halfScreenSize.x,-spritePos.y + halfScreenSize.y, 0.0, 0.0);
+	vec2 parallaxOffset = ((vertexPos.xy + vec2(-halfScreenSize.x, halfScreenSize.y)) / virtualTargetResolution.y) * parallaxIntensity * zPos;
+	vertexPos = vertexPos + vec4(parallaxOffset, 0.0, 0.0);
+
+	// adjust axis to traditional 2D
+	vertexPos = vertexPos + vec4(-halfScreenSize.x, halfScreenSize.y, 0.0, 0.0);
 
 	// scale to match fixed virtual
 	vertexPos.x /= halfScreenSize.x;

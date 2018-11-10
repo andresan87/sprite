@@ -17,6 +17,13 @@ Vector3::Vector3(const Vector3& v)
 	z = v.z;
 }
 
+Vector3::Vector3(const Vector2& v, const float fz)
+{
+	x = v.x;
+	y = v.y;
+	z = fz;
+}
+
 Vector3::Vector3(const float fx, const float fy, const float fz)
 {
 	x = fx;

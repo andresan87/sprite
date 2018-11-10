@@ -58,16 +58,21 @@ int main(int argc, const char * argv[])
 			demonFrame++;
 
 		Sprite::SetVirtualScreenHeight(video->GetResolution(), 720.0f);
+		Sprite::SetParallaxIntensity(2.0f);
 
 		video->BeginRendering();
 		{
-			spriteImage->Draw(Vector2(0.0f), Sprite::GetVirtualScreenResolution(), Vector2(0.0f), Color(0xFFFFFFFF), 0.0f, flipX, flipY);
-			pixelPerfectSpaceShip->Draw(Vector2(0.0f), Vector2(0.5f), 1.0f, angle);
-			pixelPerfectSpaceShip->Draw(Vector2(256.0f, 512.0f), Vector2(128.0f), Vector2(0.5f), Color(0x77FF0000), 90.0f, false, false);
-			pixelPerfectSpaceShip->Draw(input->GetTouchPos(0), Vector2(0.5f, 1.0f), 1.5f, -angle);
+			spriteImage->Draw(Vector3(0.0f), Sprite::GetVirtualScreenResolution(), Vector2(0.0f), Color(0xFFFFFFFF), 0.0f, flipX, flipY);
+			pixelPerfectSpaceShip->Draw(Vector3(0.0f), Vector2(0.5f), 1.0f, angle);
+			pixelPerfectSpaceShip->Draw(Vector3(256.0f, 512.0f, 0.0f), Vector2(128.0f), Vector2(0.5f), Color(0x77FF0000), 90.0f, false, false);
+			
+			for (float z = -20.0f; z < 20.0f; z += 2.0f)
+			{
+				pixelPerfectSpaceShip->Draw(Vector3(input->GetTouchPos(0), z), Vector2(0.5f, 1.0f), 1.5f, -angle);
+			}
 
 			demon->SetRect(demonRects.GetRect(demonFrame));
-			demon->Draw(Vector2(800.0f, 0.0f), Vector2(0.5f, 0.0f), 1.0f);
+			demon->Draw(Vector3(800.0f, 0.0f, 0.0f), Vector2(0.5f, 0.0f), 1.0f);
 		}
 		video->EndRendering();
 	}
