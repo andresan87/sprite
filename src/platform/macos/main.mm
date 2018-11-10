@@ -7,6 +7,7 @@
 #include "../../platform/StdFileManager.h"
 
 #include "../../math/Color.h"
+#include "../../math/Util.h"
 
 int main(int argc, const char * argv[])
 {
@@ -66,9 +67,23 @@ int main(int argc, const char * argv[])
 			pixelPerfectSpaceShip->Draw(Vector3(0.0f), Vector2(0.5f), 1.0f, angle);
 			pixelPerfectSpaceShip->Draw(Vector3(256.0f, 512.0f, 0.0f), Vector2(128.0f), Vector2(0.5f), Color(0x77FF0000), 90.0f, false, false);
 			
-			for (float z = -20.0f; z < 20.0f; z += 2.0f)
+			for (float z = -20.0f; z <= 20.0f; z += 2.0f)
 			{
 				pixelPerfectSpaceShip->Draw(Vector3(input->GetTouchPos(0), z), Vector2(0.5f, 1.0f), 1.5f, -angle);
+			}
+
+			for (float z = -80.0f; z <= 80.0f; z += 8.0f)
+			{
+				const Color solidColor(0.0f, 0.4f, 0.6f, Util::Clamp(z / 80.0f, 0.0f, 1.0f));
+				pixelPerfectSpaceShip->Draw(
+					Vector3(Vector2(1040.0f, 480.0f), z),
+					pixelPerfectSpaceShip->GetSize(),
+					Vector2(0.5f),
+					Color(1.0f, 1.0f, 1.0f, 1.0f),
+					-angle,
+					false,
+					false,
+					&solidColor);
 			}
 
 			demon->SetRect(demonRects.GetRect(demonFrame));

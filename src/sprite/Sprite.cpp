@@ -8,6 +8,7 @@ namespace sprite {
 
 PolygonRendererPtr Sprite::m_polygonRenderer;
 ShaderPtr Sprite::m_defaultShader;
+ShaderPtr Sprite::m_solidColorShader;
 math::Vector2 Sprite::m_virtualScreenResolution(1280.0f, 720.0f);
 float Sprite::m_parallaxIntensity = 0.0f;
 
@@ -27,15 +28,23 @@ void Sprite::Initialize(VideoPtr video, FileManagerPtr fileManager)
 
 		m_polygonRenderer = PolygonRenderer::Create(vertices, indices, PolygonRenderer::TRIANGLE_STRIP);
 	}
-	
+
 	if (!m_defaultShader)
 	{
 		FileIOHubPtr fileIOHub = FileIOHub::Create();
-
 		std::string vertexShader, fragmentShader;
 		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
 		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.fs", fragmentShader);
 		m_defaultShader = Shader::Create(video, vertexShader, fragmentShader);
+	}
+
+	if (!m_solidColorShader)
+	{
+		FileIOHubPtr fileIOHub = FileIOHub::Create();
+		std::string vertexShader, fragmentShader;
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-solid-color.fs", fragmentShader);
+		m_solidColorShader = Shader::Create(video, vertexShader, fragmentShader);
 	}
 }
 
@@ -95,17 +104,20 @@ void Sprite::Draw(
 	const float scale,
 	const float angle) const
 {
-	Draw(pos, GetSize() * scale, origin, math::Vector4(1.0f), angle, false, false);
+	Draw(pos, GetSize() * scale, origin, Color(1.0f, 1.0f, 1.0f, 1.0f), angle, false, false);
 }
 
 void Sprite::Draw(
 		const math::Vector3& pos,
 		const math::Vector2& size,
 		const math::Vector2& origin,
-		const math::Vector4& color,
+		const Color& color,
 		const float angle,
 		const bool flipX,
-		const bool flipY) const
+		const bool flipY,
+		const Color* solidColor,
+		Texture* secondaryTexture,
+		const TEXTURE_BLEND_MODE textureBlendMode) const
 {
 	using namespace math;
 
@@ -122,8 +134,21 @@ void Sprite::Draw(
 		flipAdd.y = 1.0f;
 	}
 
-	const ShaderPtr& shader = m_defaultShader;
+	ShaderPtr shader;
+	if (solidColor != 0 && solidColor->w > 0.0f)
+	{
+		shader = m_solidColorShader;
+	}
+	else
+	{
+		shader = m_defaultShader;
+	}
+
 	m_polygonRenderer->BeginRendering(shader);
+		if (shader == m_solidColorShader)
+		{
+			shader->SetParameter("solidColor", *solidColor);
+		}
 		shader->SetParameter("color", color);
 		shader->SetParameter("size_origin", Vector4(size, origin));
 		shader->SetParameter("spritePos_virtualTargetResolution", Vector4(Vector2(pos.x, pos.y), m_virtualScreenResolution));
