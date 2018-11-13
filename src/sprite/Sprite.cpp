@@ -9,6 +9,10 @@ namespace sprite {
 PolygonRendererPtr Sprite::m_polygonRenderer;
 ShaderPtr Sprite::m_defaultShader;
 ShaderPtr Sprite::m_solidColorShader;
+ShaderPtr Sprite::m_addShader;
+ShaderPtr Sprite::m_modulateShader;
+ShaderPtr Sprite::m_solidColorAddShader;
+ShaderPtr Sprite::m_solidColorModulateShader;
 math::Vector2 Sprite::m_virtualScreenResolution(1280.0f, 720.0f);
 float Sprite::m_parallaxIntensity = 0.0f;
 
@@ -45,6 +49,42 @@ void Sprite::Initialize(VideoPtr video, FileManagerPtr fileManager)
 		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
 		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-solid-color.fs", fragmentShader);
 		m_solidColorShader = Shader::Create(video, vertexShader, fragmentShader);
+	}
+
+	if (!m_addShader)
+	{
+		FileIOHubPtr fileIOHub = FileIOHub::Create();
+		std::string vertexShader, fragmentShader;
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-add.fs", fragmentShader);
+		m_addShader = Shader::Create(video, vertexShader, fragmentShader);
+	}
+
+	if (!m_modulateShader)
+	{
+		FileIOHubPtr fileIOHub = FileIOHub::Create();
+		std::string vertexShader, fragmentShader;
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-modulate.fs", fragmentShader);
+		m_modulateShader = Shader::Create(video, vertexShader, fragmentShader);
+	}
+
+	if (!m_solidColorAddShader)
+	{
+		FileIOHubPtr fileIOHub = FileIOHub::Create();
+		std::string vertexShader, fragmentShader;
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-solid-color-add.fs", fragmentShader);
+		m_solidColorAddShader = Shader::Create(video, vertexShader, fragmentShader);
+	}
+
+	if (!m_solidColorModulateShader)
+	{
+		FileIOHubPtr fileIOHub = FileIOHub::Create();
+		std::string vertexShader, fragmentShader;
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-solid-color-modulate.fs", fragmentShader);
+		m_solidColorModulateShader = Shader::Create(video, vertexShader, fragmentShader);
 	}
 }
 
@@ -98,6 +138,11 @@ math::Vector2 Sprite::GetSize() const
 		: (math::Vector2(0.0f));
 }
 
+TexturePtr Sprite::GetTexture()
+{
+	return m_texture;
+}
+
 void Sprite::Draw(
 	const math::Vector3& pos,
 	const math::Vector2& origin,
@@ -108,16 +153,15 @@ void Sprite::Draw(
 }
 
 void Sprite::Draw(
-		const math::Vector3& pos,
-		const math::Vector2& size,
-		const math::Vector2& origin,
-		const Color& color,
-		const float angle,
-		const bool flipX,
-		const bool flipY,
-		const Color* solidColor,
-		Texture* secondaryTexture,
-		const TEXTURE_BLEND_MODE textureBlendMode) const
+	const math::Vector3& pos,
+	const math::Vector2& size,
+	const math::Vector2& origin,
+	const Color& color,
+	const float angle,
+	const bool flipX,
+	const bool flipY,
+	ShaderPtr shader,
+	ShaderParametersPtr shaderParameters) const
 {
 	using namespace math;
 
@@ -134,20 +178,19 @@ void Sprite::Draw(
 		flipAdd.y = 1.0f;
 	}
 
-	ShaderPtr shader;
-	if (solidColor != 0 && solidColor->w > 0.0f)
-	{
-		shader = m_solidColorShader;
-	}
-	else
+	if (!shader)
 	{
 		shader = m_defaultShader;
 	}
 
 	m_polygonRenderer->BeginRendering(shader);
-		if (shader == m_solidColorShader)
+	{
+		if (shaderParameters)
 		{
-			shader->SetParameter("solidColor", *solidColor);
+			for (ShaderParameters::iterator it = shaderParameters->begin(); it != shaderParameters->end(); ++it)
+			{
+				it.value()->SetParameter(it.key(), shader);
+			}
 		}
 		shader->SetParameter("color", color);
 		shader->SetParameter("size_origin", Vector4(size, origin));
@@ -157,7 +200,59 @@ void Sprite::Draw(
 		shader->SetParameter("rectPos_rectSize", Vector4(m_rect.pos, m_rect.size));
 		shader->SetParameter("angle_parallaxIntensity_zPos", Vector4(Util::DegreeToRadian(angle), m_parallaxIntensity, pos.z, 0.0f));
 		m_polygonRenderer->Render();
+	}
 	m_polygonRenderer->EndRendering();
+}
+
+void Sprite::Draw(
+	const math::Vector3& pos,
+	const math::Vector2& size,
+	const math::Vector2& origin,
+	const Color& color,
+	const float angle,
+	const bool flipX,
+	const bool flipY,
+	const Color* solidColor,
+	const TexturePtr& secondaryTexture,
+	const TEXTURE_BLEND_MODE textureBlendMode) const
+{
+	ShaderPtr shader = m_defaultShader;
+	ShaderParametersPtr parameters(new ShaderParameters);
+
+	if (solidColor != 0 && solidColor->w > 0.0f)
+	{
+		if (textureBlendMode == TBM_NONE)
+		{
+			shader = m_solidColorShader;
+		}
+		else if (textureBlendMode == TBM_ADD)
+		{
+			shader = m_solidColorAddShader;
+		}
+		else if (textureBlendMode == TBM_MODULATE)
+		{
+			shader = m_solidColorModulateShader;
+		}
+		(*parameters)["solidColor"] = std::make_shared<Shader::Vector4ShaderParameter>(*solidColor);
+	}
+	else if (textureBlendMode != TBM_NONE)
+	{
+		if (textureBlendMode == TBM_ADD)
+		{
+			shader = m_addShader;
+		}
+		else if (textureBlendMode == TBM_MODULATE)
+		{
+			shader = m_modulateShader;
+		}
+	}
+
+	if (secondaryTexture)
+	{
+		(*parameters)["secondary"] = std::make_shared<Shader::TextureShaderParameter>(secondaryTexture);
+	}
+	
+	Draw(pos, size, origin, color, angle, flipX, flipY, shader, parameters);
 }
 
 void Sprite::SetRect(const math::Rect& rect)

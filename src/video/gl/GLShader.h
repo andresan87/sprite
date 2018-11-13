@@ -5,14 +5,12 @@
 
 #include "GLInclude.h"
 
-#include "../../utilities/tsl/hopscotch_map.h"
-
 namespace sprite {
 
 class GLShader : public Shader
 {
 	GLuint m_shaderProgram;
-	
+
 	tsl::hopscotch_map<std::string, GLint> m_parameters;
 	tsl::hopscotch_map<std::string, GLint> m_textureParamsIndices;
 

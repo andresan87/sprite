@@ -23,6 +23,8 @@ int main(int argc, const char * argv[])
 	SpritePtr spriteImage(new Sprite(video, fileManager, fileIOHub->GetResourceDirectory() + "sprite.jpg"));
 	SpritePtr pixelPerfectSpaceShip(new Sprite(video, fileManager, fileIOHub->GetResourceDirectory() + "space-ship.png"));
 	SpritePtr demon(new Sprite(video, fileManager, fileIOHub->GetResourceDirectory() + "spider_demon.png"));
+	SpritePtr castleWall(new Sprite(video, fileManager, fileIOHub->GetResourceDirectory() + "castle_bg_arch_2.png"));
+	SpritePtr castleWallLm(new Sprite(video, fileManager, fileIOHub->GetResourceDirectory() + "add3722.png"));
 
 	SpriteRects demonRects;
 	demonRects.SetRects(4, 1);
@@ -64,9 +66,13 @@ int main(int argc, const char * argv[])
 		video->BeginRendering();
 		{
 			spriteImage->Draw(Vector3(0.0f), Sprite::GetVirtualScreenResolution(), Vector2(0.0f), Color(0xFFFFFFFF), 0.0f, flipX, flipY);
+
+			castleWall->Draw(Vector3(0.0f), castleWall->GetSize(), Vector2(0.0f), Color(1.0f, 1.0f, 1.0f, 1.0f),
+				0.0f, false, false, 0, castleWallLm->GetTexture(), Sprite::TBM_MODULATE);
+
 			pixelPerfectSpaceShip->Draw(Vector3(0.0f), Vector2(0.5f), 1.0f, angle);
 			pixelPerfectSpaceShip->Draw(Vector3(256.0f, 512.0f, 0.0f), Vector2(128.0f), Vector2(0.5f), Color(0x77FF0000), 90.0f, false, false);
-			
+
 			for (float z = -20.0f; z <= 20.0f; z += 2.0f)
 			{
 				pixelPerfectSpaceShip->Draw(Vector3(input->GetTouchPos(0), z), Vector2(0.5f, 1.0f), 1.5f, -angle);
