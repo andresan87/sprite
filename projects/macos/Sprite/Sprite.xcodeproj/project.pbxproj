@@ -163,10 +163,10 @@
 		AA18F56622B5A04200F44DA6 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				AA18F58722B5A04200F44DA6 /* platform */,
 				AA18F56722B5A04200F44DA6 /* video */,
 				AA18F5B622B5A04200F44DA6 /* sprite */,
 				AA18F57F22B5A04200F44DA6 /* input */,
-				AA18F58722B5A04200F44DA6 /* platform */,
 				AA18F59822B5A04200F44DA6 /* math */,
 				AA18F5A522B5A04200F44DA6 /* utilities */,
 			);
@@ -262,8 +262,8 @@
 		AA18F58922B5A04200F44DA6 /* macos */ = {
 			isa = PBXGroup;
 			children = (
-				AA18F58A22B5A04200F44DA6 /* MacOSFileIOHub.mm */,
 				AA18F58B22B5A04200F44DA6 /* main.mm */,
+				AA18F58A22B5A04200F44DA6 /* MacOSFileIOHub.mm */,
 				AA18F58C22B5A04200F44DA6 /* MacOSFileIOHub.h */,
 			);
 			path = macos;
