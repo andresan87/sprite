@@ -6,7 +6,7 @@ namespace sprite {
 
 PolygonRendererPtr PolygonRenderer::Create(
 	const std::vector<PolygonRenderer::Vertex>& vertices,
-	const std::vector<unsigned int>& indices,
+	const std::vector<uint32_t>& indices,
 	const PolygonRenderer::POLYGON_MODE mode)
 {
 	return std::make_shared<GLPolygonRenderer>(vertices, indices, mode);
@@ -14,7 +14,7 @@ PolygonRendererPtr PolygonRenderer::Create(
 
 GLPolygonRenderer::GLPolygonRenderer(
 	const std::vector<PolygonRenderer::Vertex>& vertices,
-	const std::vector<unsigned int>& indices,
+	const std::vector<uint32_t>& indices,
 	const PolygonRenderer::POLYGON_MODE mode) :
 	m_mode(mode),
 	m_indices(indices),
@@ -30,7 +30,7 @@ GLPolygonRenderer::GLPolygonRenderer(
 	glBufferData(GL_ARRAY_BUFFER, sizeof(PolygonRenderer::Vertex) * m_vertices.size(), &m_vertices[0], GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_arrayElementObject);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * m_indices.size(), &m_indices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint32_t) * m_indices.size(), &m_indices[0], GL_STATIC_DRAW);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(PolygonRenderer::Vertex), (void*)0);
 	glEnableVertexAttribArray(0);

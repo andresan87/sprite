@@ -22,7 +22,7 @@ class GLPolygonRenderer : public PolygonRenderer
 public:
 	GLPolygonRenderer(
 		const std::vector<PolygonRenderer::Vertex>& vertices,
-		const std::vector<unsigned int>& indices,
+		const std::vector<uint32_t>& indices,
 		const PolygonRenderer::POLYGON_MODE mode);
 	
 	~GLPolygonRenderer();
