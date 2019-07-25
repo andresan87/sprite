@@ -9,14 +9,15 @@ namespace sprite {
 
 class GLShader : public Shader
 {
-	GLuint m_shaderProgram;
+	GLuint m_program;
+
+	GLint m_vPositionLocation;
+	GLint m_vTexCoordLocation;
+	GLint m_vNormalLocation;
 
 	tsl::hopscotch_map<std::string, GLint> m_parameters;
-	tsl::hopscotch_map<std::string, GLint> m_textureParamsIndices;
 
-	GLint FindUniformLocation(const std::string& name, const bool isTexture);
-	
-	unsigned int m_textureCount;
+	GLint FindUniformLocation(const std::string& name);
 
 public:
 	GLShader(
@@ -24,13 +25,17 @@ public:
 		const std::string& vertexShaderSource,
 		const std::string& fragmentShaderSource);
 
-	GLuint GetShaderProgram() const;
+	GLint GetVPositionLocation() const;
+	GLint GetVTexCoordLocation() const;
+	GLint GetVNormalLocation() const;
+
+	void SetShader();
 
 	void SetParameter(const std::string& name, const float v);
 	void SetParameter(const std::string& name, const math::Vector2& v);
 	void SetParameter(const std::string& name, const math::Vector3& v);
 	void SetParameter(const std::string& name, const math::Vector4& v);
-	void SetParameter(const std::string& name, TexturePtr texture);
+	void SetParameter(const std::string& name, TexturePtr texture, const unsigned int index);
 };
 
 } // namespace sprite

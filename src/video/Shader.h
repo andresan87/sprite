@@ -32,8 +32,9 @@ public:
 	class TextureShaderParameter : public ShaderParameter
 	{
 		TexturePtr m_texture;
+		unsigned int m_index;
 	public:
-		TextureShaderParameter(const TexturePtr& texture);
+		TextureShaderParameter(const TexturePtr& texture, const unsigned int index);
 		void SetParameter(const std::string& name, const ShaderPtr& shader);
 	};
 
@@ -74,11 +75,13 @@ public:
 		const std::string& vertexShaderSource,
 		const std::string& fragmentShaderSource);
 
+	virtual void SetShader() = 0;
+
 	virtual void SetParameter(const std::string& name, const float v) = 0;
 	virtual void SetParameter(const std::string& name, const math::Vector2& v) = 0;
 	virtual void SetParameter(const std::string& name, const math::Vector3& v) = 0;
 	virtual void SetParameter(const std::string& name, const math::Vector4& v) = 0;
-	virtual void SetParameter(const std::string& name, TexturePtr texture) = 0;
+	virtual void SetParameter(const std::string& name, TexturePtr texture, const unsigned int index) = 0;
 };
 
 typedef std::shared_ptr<Shader::ShaderParameter> ShaderParameterPtr;

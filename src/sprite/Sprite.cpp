@@ -195,7 +195,7 @@ void Sprite::Draw(
 		shader->SetParameter("color", color);
 		shader->SetParameter("size_origin", Vector4(size, origin));
 		shader->SetParameter("spritePos_virtualTargetResolution", Vector4(Vector2(pos.x, pos.y), m_virtualScreenResolution));
-		shader->SetParameter("diffuse", m_texture);
+		shader->SetParameter("diffuse", m_texture, 0);
 		shader->SetParameter("flipAdd_flipMul", Vector4(flipAdd, flipMul));
 		shader->SetParameter("rectPos_rectSize", Vector4(m_rect.pos, m_rect.size));
 		shader->SetParameter("angle_parallaxIntensity_zPos", Vector4(Util::DegreeToRadian(angle), m_parallaxIntensity, pos.z, 0.0f));
@@ -249,7 +249,7 @@ void Sprite::Draw(
 
 	if (secondaryTexture)
 	{
-		(*parameters)["secondary"] = std::make_shared<Shader::TextureShaderParameter>(secondaryTexture);
+		(*parameters)["secondary"] = std::make_shared<Shader::TextureShaderParameter>(secondaryTexture, 1);
 	}
 	
 	Draw(pos, size, origin, color, angle, flipX, flipY, shader, parameters);

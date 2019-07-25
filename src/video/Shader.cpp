@@ -2,14 +2,15 @@
 
 namespace sprite {
 
-Shader::TextureShaderParameter::TextureShaderParameter(const TexturePtr& texture) :
-	m_texture(texture)
+Shader::TextureShaderParameter::TextureShaderParameter(const TexturePtr& texture, const unsigned int index) :
+	m_texture(texture),
+	m_index(index)
 {
 }
 
 void Shader::TextureShaderParameter::SetParameter(const std::string& name, const ShaderPtr& shader)
 {
-	shader->SetParameter(name, m_texture);
+	shader->SetParameter(name, m_texture, m_index);
 }
 
 Shader::FloatShaderParameter::FloatShaderParameter(const float f) :

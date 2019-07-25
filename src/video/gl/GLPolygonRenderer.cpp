@@ -32,17 +32,8 @@ GLPolygonRenderer::GLPolygonRenderer(
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_arrayElementObject);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint32_t) * m_indices.size(), &m_indices[0], GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(PolygonRenderer::Vertex), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(PolygonRenderer::Vertex), (void*)(sizeof(math::Vector3)));
-	glEnableVertexAttribArray(1);
-
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(PolygonRenderer::Vertex), (void*)(2 * sizeof(math::Vector3)));
-	glEnableVertexAttribArray(2);
-
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
 	switch (mode)
@@ -71,10 +62,28 @@ GLPolygonRenderer::~GLPolygonRenderer()
 
 void GLPolygonRenderer::BeginRendering(const ShaderPtr& shader)
 {
+	shader->SetShader();
+
 	glBindVertexArray(m_vertexArrayObject);
-	
-	GLShader* glShader = (GLShader*)shader.get();
-	glUseProgram(glShader->GetShaderProgram());
+
+	glBindBuffer(GL_ARRAY_BUFFER, m_arrayBufferObject);
+	GLShader* glShader = static_cast<GLShader*>(shader.get());
+
+	const GLint vPosition = glShader->GetVPositionLocation();
+	glVertexAttribPointer(vPosition, 3, GL_FLOAT, GL_FALSE, sizeof(PolygonRenderer::Vertex), (void*)0);
+
+	const GLint vTexCoord = glShader->GetVTexCoordLocation();
+	glVertexAttribPointer(vTexCoord, 2, GL_FLOAT, GL_FALSE, sizeof(PolygonRenderer::Vertex), (void*)(sizeof(math::Vector3)));
+
+	glEnableVertexAttribArray(vPosition);
+	glEnableVertexAttribArray(vTexCoord);
+
+	const GLint vNormal = glShader->GetVNormalLocation();
+	if (vNormal != -1)
+	{
+		glVertexAttribPointer(vNormal, 3, GL_FLOAT, GL_FALSE, sizeof(PolygonRenderer::Vertex), (void*)(sizeof(math::Vector3) + sizeof(math::Vector2)));
+		glEnableVertexAttribArray(vNormal);
+	}
 }
 
 void GLPolygonRenderer::Render()
