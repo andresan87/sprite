@@ -11,10 +11,6 @@ class GLShader : public Shader
 {
 	GLuint m_program;
 
-	GLint m_vPositionLocation;
-	GLint m_vTexCoordLocation;
-	GLint m_vNormalLocation;
-
 	tsl::hopscotch_map<std::string, GLint> m_parameters;
 
 	GLint FindUniformLocation(const std::string& name);
@@ -24,10 +20,6 @@ public:
 		const VideoPtr& video,
 		const std::string& vertexShaderSource,
 		const std::string& fragmentShaderSource);
-
-	GLint GetVPositionLocation() const;
-	GLint GetVTexCoordLocation() const;
-	GLint GetVNormalLocation() const;
 
 	void SetShader();
 

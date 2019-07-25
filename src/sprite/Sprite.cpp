@@ -28,7 +28,7 @@ void Sprite::Initialize(VideoPtr video, FileManagerPtr fileManager)
 			PolygonRenderer::Vertex(math::Vector3( 1.0f, 1.0f, 0.0f), math::Vector3(1.0f), math::Vector2(1.0f, 1.0f))
 		};
 
-		std::vector<unsigned int> indices = { 0, 1, 2, 3 };
+		std::vector<uint32_t> indices = { 0, 1, 2, 3 };
 
 		m_polygonRenderer = PolygonRenderer::Create(vertices, indices, PolygonRenderer::TRIANGLE_STRIP);
 	}

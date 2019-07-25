@@ -64,25 +64,6 @@ GLShader::GLShader(
 
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
-
-	m_vPositionLocation = glGetAttribLocation(m_program, "vPosition");
-	m_vTexCoordLocation = glGetAttribLocation(m_program, "vTexCoord");
-	m_vNormalLocation = glGetAttribLocation(m_program, "vNormal");
-}
-
-GLint GLShader::GetVPositionLocation() const
-{
-	return m_vPositionLocation;
-}
-
-GLint GLShader::GetVTexCoordLocation() const
-{
-	return m_vTexCoordLocation;
-}
-
-GLint GLShader::GetVNormalLocation() const
-{
-	return m_vNormalLocation;
 }
 
 GLint GLShader::FindUniformLocation(const std::string& name)
