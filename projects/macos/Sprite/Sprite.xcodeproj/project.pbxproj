@@ -179,16 +179,16 @@
 			children = (
 				AA18F56D22B5A04200F44DA6 /* sdl */,
 				AA18F57222B5A04200F44DA6 /* gl */,
-				AA18F56822B5A04200F44DA6 /* Shader.h */,
 				AA18F56922B5A04200F44DA6 /* Texture.cpp */,
-				AA18F56A22B5A04200F44DA6 /* Video.cpp */,
-				AA18F56B22B5A04200F44DA6 /* RenderTarget.cpp */,
-				AA18F56C22B5A04200F44DA6 /* Shader.cpp */,
-				AA18F57022B5A04200F44DA6 /* PolygonRenderer.cpp */,
-				AA18F57122B5A04200F44DA6 /* Video.h */,
-				AA18F57C22B5A04200F44DA6 /* PolygonRenderer.h */,
 				AA18F57D22B5A04200F44DA6 /* Texture.h */,
+				AA18F56B22B5A04200F44DA6 /* RenderTarget.cpp */,
 				AA18F57E22B5A04200F44DA6 /* RenderTarget.h */,
+				AA18F56C22B5A04200F44DA6 /* Shader.cpp */,
+				AA18F56822B5A04200F44DA6 /* Shader.h */,
+				AA18F57022B5A04200F44DA6 /* PolygonRenderer.cpp */,
+				AA18F57C22B5A04200F44DA6 /* PolygonRenderer.h */,
+				AA18F56A22B5A04200F44DA6 /* Video.cpp */,
+				AA18F57122B5A04200F44DA6 /* Video.h */,
 			);
 			path = video;
 			sourceTree = "<group>";
@@ -206,14 +206,14 @@
 			isa = PBXGroup;
 			children = (
 				AA18F57322B5A04200F44DA6 /* GLPolygonRenderer.cpp */,
-				AA18F57422B5A04200F44DA6 /* GLTexture.cpp */,
-				AA18F57522B5A04200F44DA6 /* GLShader.cpp */,
 				AA18F57622B5A04200F44DA6 /* GLPolygonRenderer.h */,
-				AA18F57722B5A04200F44DA6 /* GLVideo.cpp */,
-				AA18F57822B5A04200F44DA6 /* GLInclude.h */,
-				AA18F57922B5A04200F44DA6 /* GLVideo.h */,
+				AA18F57422B5A04200F44DA6 /* GLTexture.cpp */,
 				AA18F57A22B5A04200F44DA6 /* GLTexture.h */,
+				AA18F57522B5A04200F44DA6 /* GLShader.cpp */,
 				AA18F57B22B5A04200F44DA6 /* GLShader.h */,
+				AA18F57722B5A04200F44DA6 /* GLVideo.cpp */,
+				AA18F57922B5A04200F44DA6 /* GLVideo.h */,
+				AA18F57822B5A04200F44DA6 /* GLInclude.h */,
 			);
 			path = gl;
 			sourceTree = "<group>";
@@ -342,10 +342,10 @@
 		AA18F5B622B5A04200F44DA6 /* sprite */ = {
 			isa = PBXGroup;
 			children = (
-				AA18F5B722B5A04200F44DA6 /* SpriteRects.cpp */,
 				AA18F5B822B5A04200F44DA6 /* Sprite.cpp */,
-				AA18F5B922B5A04200F44DA6 /* SpriteRects.h */,
 				AA18F5BA22B5A04200F44DA6 /* Sprite.h */,
+				AA18F5B722B5A04200F44DA6 /* SpriteRects.cpp */,
+				AA18F5B922B5A04200F44DA6 /* SpriteRects.h */,
 			);
 			path = sprite;
 			sourceTree = "<group>";
