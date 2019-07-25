@@ -1,6 +1,6 @@
 #version 330 core
 
-layout (location = 0) in vec3 inPos;
+layout (location = 0) in vec3 inPosition;
 layout (location = 1) in vec2 inTexCoord;
 
 out vec4 outColor;
@@ -15,7 +15,7 @@ uniform vec4 angle_parallaxIntensity_zPos;
 
 void main()
 {
-	vec4 vertexPos = vec4(inPos, 1.0);
+	vec4 vertexPos = vec4(inPosition, 1.0);
 
 	vec2 size   = vec2(size_origin.x, size_origin.y);
 	vec2 origin = vec2(size_origin.z, size_origin.w);
