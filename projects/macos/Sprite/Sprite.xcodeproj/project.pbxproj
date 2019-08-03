@@ -141,6 +141,7 @@
 		AA7DDBFC2182377E006E1EC0 /* Sprite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sprite.entitlements; sourceTree = "<group>"; };
 		AA7DDC0721823A24006E1EC0 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		AA7DDC0A21823A61006E1EC0 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		AA92F34722F60B5700AECB30 /* GLShaderCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLShaderCode.h; sourceTree = "<group>"; };
 		AA9546892188FD5B00FFCA0E /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = Sprite/assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -341,6 +342,7 @@
 				AA18F5BA22B5A04200F44DA6 /* Sprite.h */,
 				AA18F5B722B5A04200F44DA6 /* SpriteRects.cpp */,
 				AA18F5B922B5A04200F44DA6 /* SpriteRects.h */,
+				AA92F34722F60B5700AECB30 /* GLShaderCode.h */,
 			);
 			path = sprite;
 			sourceTree = "<group>";

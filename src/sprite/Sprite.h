@@ -15,7 +15,7 @@ typedef std::shared_ptr<Sprite> SpritePtr;
 
 class Sprite
 {
-	static void Initialize(VideoPtr video, FileManagerPtr fileManager);
+	static void Initialize(VideoPtr video);
 	static PolygonRendererPtr m_polygonRenderer;
 	static math::Vector2 m_virtualScreenResolution;
 	static float m_parallaxIntensity;

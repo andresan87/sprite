@@ -1,8 +1,10 @@
 #include "Sprite.h"
 
-#include "../platform/FileIOHub.h"
-
 #include "../math/Util.h"
+
+#if defined(__APPLE__) || defined(_WIN32) || defined(_WIN64)
+#include "GLShaderCode.h"
+#endif
 
 namespace sprite {
 
@@ -17,7 +19,7 @@ ShaderPtr Sprite::m_solidColorModulateShader;
 math::Vector2 Sprite::m_virtualScreenResolution(1280.0f, 720.0f);
 float Sprite::m_parallaxIntensity = 0.0f;
 
-void Sprite::Initialize(VideoPtr video, FileManagerPtr fileManager)
+void Sprite::Initialize(VideoPtr video)
 {
 	if (!m_polygonRenderer)
 	{
@@ -36,65 +38,37 @@ void Sprite::Initialize(VideoPtr video, FileManagerPtr fileManager)
 
 	if (!m_defaultShader)
 	{
-		FileIOHubPtr fileIOHub = FileIOHub::Create();
-		std::string vertexShader, fragmentShader;
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.fs", fragmentShader);
-		m_defaultShader = Shader::Create(video, vertexShader, fragmentShader);
+		m_defaultShader = Shader::Create(video, gs2d_shaders::default_sprite_vs, gs2d_shaders::default_sprite_fs);
 	}
 
 	if (!m_fastShader)
 	{
-		FileIOHubPtr fileIOHub = FileIOHub::Create();
-		std::string vertexShader, fragmentShader;
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-fast.vs", vertexShader);
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.fs", fragmentShader);
-		m_fastShader = Shader::Create(video, vertexShader, fragmentShader);
+		m_fastShader = Shader::Create(video, gs2d_shaders::default_sprite_fast_vs, gs2d_shaders::default_sprite_fs);
 	}
 
 	if (!m_solidColorShader)
 	{
-		FileIOHubPtr fileIOHub = FileIOHub::Create();
-		std::string vertexShader, fragmentShader;
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-solid-color.fs", fragmentShader);
-		m_solidColorShader = Shader::Create(video, vertexShader, fragmentShader);
+		m_solidColorShader = Shader::Create(video, gs2d_shaders::default_sprite_vs, gs2d_shaders::default_sprite_solid_color_fs);
 	}
 
 	if (!m_addShader)
 	{
-		FileIOHubPtr fileIOHub = FileIOHub::Create();
-		std::string vertexShader, fragmentShader;
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-add.fs", fragmentShader);
-		m_addShader = Shader::Create(video, vertexShader, fragmentShader);
+		m_addShader = Shader::Create(video, gs2d_shaders::default_sprite_vs, gs2d_shaders::default_sprite_add_fs);
 	}
 
 	if (!m_modulateShader)
 	{
-		FileIOHubPtr fileIOHub = FileIOHub::Create();
-		std::string vertexShader, fragmentShader;
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-modulate.fs", fragmentShader);
-		m_modulateShader = Shader::Create(video, vertexShader, fragmentShader);
+		m_modulateShader = Shader::Create(video, gs2d_shaders::default_sprite_vs, gs2d_shaders::default_sprite_modulate_fs);
 	}
 
 	if (!m_solidColorAddShader)
 	{
-		FileIOHubPtr fileIOHub = FileIOHub::Create();
-		std::string vertexShader, fragmentShader;
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-solid-color-add.fs", fragmentShader);
-		m_solidColorAddShader = Shader::Create(video, vertexShader, fragmentShader);
+		m_solidColorAddShader = Shader::Create(video, gs2d_shaders::default_sprite_vs, gs2d_shaders::default_sprite_solid_color_add_fs);
 	}
 
 	if (!m_solidColorModulateShader)
 	{
-		FileIOHubPtr fileIOHub = FileIOHub::Create();
-		std::string vertexShader, fragmentShader;
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
-		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-solid-color-modulate.fs", fragmentShader);
-		m_solidColorModulateShader = Shader::Create(video, vertexShader, fragmentShader);
+		m_solidColorModulateShader = Shader::Create(video, gs2d_shaders::default_sprite_vs, gs2d_shaders::default_sprite_solid_color_modulate_fs);
 	}
 }
 
@@ -131,7 +105,7 @@ Sprite::Sprite(
 	const float pixelDensity) :
 	m_pixelDensity(pixelDensity)
 {
-	Initialize(video, fileManager);
+	Initialize(video);
 	m_texture = Texture::Create(video, fileManager, fileName);
 }
 
