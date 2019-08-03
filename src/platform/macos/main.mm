@@ -75,7 +75,8 @@ int main(int argc, const char * argv[])
 				0.0f,
 				defaultRect,
 				flipX,
-				flipY);
+				flipY,
+				Sprite::m_defaultShader);
 
 			ShaderParametersPtr modulateParameters(new ShaderParameters);
 			(*modulateParameters)["secondary"] = std::make_shared<Shader::TextureShaderParameter>(castleWallLm->GetTexture(), 1);

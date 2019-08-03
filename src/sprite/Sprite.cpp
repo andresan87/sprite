@@ -239,6 +239,32 @@ void Sprite::Draw(
 	m_polygonRenderer->EndRendering();
 }
 
+void Sprite::Draw(
+	const math::Vector2& cameraPos,
+	const math::Vector3& pos,
+	const math::Vector2& size,
+	const math::Vector2& origin,
+	const Color& color,
+	const float angle,
+	const math::Rect& rect,
+	const bool flipX,
+	const bool flipY,
+	ShaderPtr shader,
+	ShaderParametersPtr shaderParameters) const
+{
+	Draw(
+		math::Vector3(pos.x - cameraPos.x, pos.y - cameraPos.y, pos.z),
+		size,
+		origin,
+		color,
+		angle,
+		rect,
+		flipX,
+		flipY,
+		shader,
+		shaderParameters);
+}
+
 void Sprite::BeginFastDraw() const
 {
 	m_polygonRenderer->BeginRendering(m_fastShader);

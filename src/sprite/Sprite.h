@@ -63,7 +63,20 @@ public:
 		const math::Rect& rect,
 		const bool flipX,
 		const bool flipY,
-		ShaderPtr shader = nullptr,
+		ShaderPtr shader,
+		ShaderParametersPtr shaderParameters = nullptr) const;
+
+	void Draw(
+		const math::Vector2& cameraPos,
+		const math::Vector3& pos,
+		const math::Vector2& size,
+		const math::Vector2& origin,
+		const Color& color,
+		const float angle,
+		const math::Rect& rect,
+		const bool flipX,
+		const bool flipY,
+		ShaderPtr shader,
 		ShaderParametersPtr shaderParameters = nullptr) const;
 
 	void BeginFastDraw() const;
