@@ -2,8 +2,14 @@
 
 #include "../math/Util.h"
 
-#if defined(__APPLE__) || defined(_WIN32) || defined(_WIN64)
+#ifdef __APPLE__
+#include "TargetConditionals.h"
+#endif
+
+#if defined(TARGET_OS_MAC) || defined(_WIN32) || defined(_WIN64)
 #include "GLShaderCode.h"
+#elif defined(TARGET_OS_IPHONE) || defined(__ANDROID__)
+#include "GLES2ShaderCode.h"
 #endif
 
 namespace sprite {
