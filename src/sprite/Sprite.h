@@ -20,11 +20,6 @@ class Sprite
 	static math::Vector2 m_virtualScreenResolution;
 	static float m_parallaxIntensity;
 
-	TexturePtr m_texture;
-
-	float m_pixelDensity;
-
-public:
 	static ShaderPtr m_defaultShader;
 	static ShaderPtr m_fastShader;
 	static ShaderPtr m_solidColorShader;
@@ -33,11 +28,24 @@ public:
 	static ShaderPtr m_solidColorAddShader;
 	static ShaderPtr m_solidColorModulateShader;
 
+	TexturePtr m_texture;
+
+	float m_pixelDensity;
+
+public:
 	static void SetVirtualScreenResolution(const math::Vector2& resolution);
 	static math::Vector2 GetVirtualScreenResolution();
 	static void SetVirtualScreenHeight(const math::Vector2& currentScreenResolution, const float height);
 	static void SetParallaxIntensity(const float intensity);
 	static float GetParallaxIntensity();
+
+	static ShaderPtr getDefaultShader();
+	static ShaderPtr getFastShader();
+	static ShaderPtr getSolidColorShader();
+	static ShaderPtr getAddShader();
+	static ShaderPtr getModulateShader();
+	static ShaderPtr getSolidColorAddShader();
+	static ShaderPtr getSolidColorModulateShader();
 
 	Sprite(
 		VideoPtr video,
@@ -45,7 +53,6 @@ public:
 		const std::string& fileName,
 		const float pixelDensity = 1.0f);
 
-	bool IsLoaded() const;
 	math::Vector2 GetSize(const math::Rect& rect) const;
 	void Draw(
 		const math::Vector3& pos,

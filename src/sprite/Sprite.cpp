@@ -115,14 +115,44 @@ Sprite::Sprite(
 	m_texture = Texture::Create(video, fileManager, fileName);
 }
 
-bool Sprite::IsLoaded() const
+ShaderPtr Sprite::getDefaultShader()
 {
-	return (m_texture != TexturePtr());
+	return m_defaultShader;
+}
+
+ShaderPtr Sprite::getFastShader()
+{
+	return m_fastShader;
+}
+
+ShaderPtr Sprite::getSolidColorShader()
+{
+	return m_solidColorShader;
+}
+
+ShaderPtr Sprite::getAddShader()
+{
+	return m_addShader;
+}
+
+ShaderPtr Sprite::getModulateShader()
+{
+	return m_modulateShader;
+}
+
+ShaderPtr Sprite::getSolidColorAddShader()
+{
+	return m_solidColorAddShader;
+}
+
+ShaderPtr Sprite::getSolidColorModulateShader()
+{
+	return m_solidColorModulateShader;
 }
 
 math::Vector2 Sprite::GetSize(const math::Rect& rect) const
 {
-	return (IsLoaded())
+	return (m_texture)
 		? ((m_texture->GetResolution() / m_pixelDensity) * rect.size)
 		: (math::Vector2(0.0f));
 }

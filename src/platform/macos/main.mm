@@ -76,7 +76,7 @@ int main(int argc, const char * argv[])
 				defaultRect,
 				flipX,
 				flipY,
-				Sprite::m_defaultShader);
+				Sprite::getDefaultShader());
 
 			ShaderParametersPtr modulateParameters(new ShaderParameters);
 			(*modulateParameters)["secondary"] = std::make_shared<Shader::TextureShaderParameter>(castleWallLm->GetTexture(), 1);
@@ -90,7 +90,7 @@ int main(int argc, const char * argv[])
 				defaultRect,
 				false,
 				false,
-				Sprite::m_modulateShader,
+				Sprite::getModulateShader(),
 				modulateParameters);
 
 			pixelPerfectSpaceShip->Draw(Vector3(0.0f), Vector2(0.5f), 1.0f, angle, defaultRect);
@@ -104,7 +104,7 @@ int main(int argc, const char * argv[])
 				defaultRect,
 				false,
 				false,
-				Sprite::m_defaultShader);
+				Sprite::getDefaultShader());
 
 			for (float z = -20.0f; z <= 20.0f; z += 2.0f)
 			{
@@ -128,7 +128,7 @@ int main(int argc, const char * argv[])
 					defaultRect,
 					false,
 					false,
-					Sprite::m_solidColorShader,
+					Sprite::getSolidColorShader(),
 					solidColorParameters);
 			}
 
