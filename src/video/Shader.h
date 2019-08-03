@@ -82,6 +82,7 @@ public:
 	virtual void SetParameter(const std::string& name, const math::Vector3& v) = 0;
 	virtual void SetParameter(const std::string& name, const math::Vector4& v) = 0;
 	virtual void SetParameter(const std::string& name, TexturePtr texture, const unsigned int index) = 0;
+	virtual void SetConstantArray(const std::string& name, unsigned int nElements, const math::Vector4* v) = 0;
 };
 
 typedef std::shared_ptr<Shader::ShaderParameter> ShaderParameterPtr;

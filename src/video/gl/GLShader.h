@@ -28,6 +28,7 @@ public:
 	void SetParameter(const std::string& name, const math::Vector3& v);
 	void SetParameter(const std::string& name, const math::Vector4& v);
 	void SetParameter(const std::string& name, TexturePtr texture, const unsigned int index);
+	void SetConstantArray(const std::string& name, unsigned int nElements, const math::Vector4* v);
 };
 
 } // namespace sprite

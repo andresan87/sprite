@@ -123,4 +123,10 @@ void GLShader::SetParameter(const std::string& name, TexturePtr texture, const u
 	glBindTexture(GL_TEXTURE_2D, texturePtr->GetTexture());
 }
 
+void GLShader::SetConstantArray(const std::string& name, unsigned int nElements, const math::Vector4* v)
+{
+	const GLint location = FindUniformLocation(name);
+	glUniform4fv(location, nElements, static_cast<const GLfloat*>(&v->x));
+}
+
 } // namespace sprite

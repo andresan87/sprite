@@ -6,32 +6,34 @@ layout (location = 1) in vec2 inTexCoord;
 out vec4 outColor;
 out vec2 outTexCoord;
 
-uniform vec4 size_origin;
-uniform vec4 spritePos_virtualTargetResolution;
-uniform vec4 color;
-uniform vec4 flipAdd_flipMul;
-uniform vec4 rectPos_rectSize;
-uniform vec4 angle_parallaxIntensity_zPos;
+uniform vec4 u[6];
+
+#define SIZE_ORIGIN 0
+#define SPRITEPOS_VIRTUALTARGETRESOLUTION 1
+#define COLOR 2
+#define FLIPADD_FLIPMUL 3
+#define RECTPOS_RECTSIZE 4
+#define ANGLE_PARALLAXINTENSITY_ZPOS 5
 
 void main()
 {
 	vec4 vertexPos = vec4(inPosition, 1.0);
 
-	vec2 size   = vec2(size_origin.x, size_origin.y);
-	vec2 origin = vec2(size_origin.z, size_origin.w);
+	vec2 size   = vec2(u[SIZE_ORIGIN].x, u[SIZE_ORIGIN].y);
+	vec2 origin = vec2(u[SIZE_ORIGIN].z, u[SIZE_ORIGIN].w);
 
-	vec2 spritePos = vec2(spritePos_virtualTargetResolution.x, spritePos_virtualTargetResolution.y);
-	vec2 virtualTargetResolution = vec2(spritePos_virtualTargetResolution.z, spritePos_virtualTargetResolution.w);
+	vec2 spritePos = vec2(u[SPRITEPOS_VIRTUALTARGETRESOLUTION].x, u[SPRITEPOS_VIRTUALTARGETRESOLUTION].y);
+	vec2 virtualTargetResolution = vec2(u[SPRITEPOS_VIRTUALTARGETRESOLUTION].z, u[SPRITEPOS_VIRTUALTARGETRESOLUTION].w);
 
-	vec2 flipAdd = vec2(flipAdd_flipMul.x, flipAdd_flipMul.y);
-	vec2 flipMul = vec2(flipAdd_flipMul.z, flipAdd_flipMul.w);
+	vec2 flipAdd = vec2(u[FLIPADD_FLIPMUL].x, u[FLIPADD_FLIPMUL].y);
+	vec2 flipMul = vec2(u[FLIPADD_FLIPMUL].z, u[FLIPADD_FLIPMUL].w);
 
-	vec2 rectPos  = vec2(rectPos_rectSize.x, rectPos_rectSize.y);
-	vec2 rectSize = vec2(rectPos_rectSize.z, rectPos_rectSize.w);
+	vec2 rectPos  = vec2(u[RECTPOS_RECTSIZE].x, u[RECTPOS_RECTSIZE].y);
+	vec2 rectSize = vec2(u[RECTPOS_RECTSIZE].z, u[RECTPOS_RECTSIZE].w);
 
-	float angle = angle_parallaxIntensity_zPos.x;
-	float parallaxIntensity = angle_parallaxIntensity_zPos.y;
-	float zPos = angle_parallaxIntensity_zPos.z;
+	float angle = u[ANGLE_PARALLAXINTENSITY_ZPOS].x;
+	float parallaxIntensity = u[ANGLE_PARALLAXINTENSITY_ZPOS].y;
+	float zPos = u[ANGLE_PARALLAXINTENSITY_ZPOS].z;
 
 	// apply flip
 	vertexPos = vertexPos * vec4(flipMul.x, flipMul.y, 1.0, 1.0) + vec4(flipAdd.x, flipAdd.y, 0.0, 0.0);
@@ -71,5 +73,5 @@ void main()
 	outTexCoord = texCoord;
 
 	gl_Position = vertexPos;
-	outColor = color;
+	outColor = u[COLOR];
 }

@@ -63,37 +63,75 @@ int main(int argc, const char * argv[])
 		Sprite::SetVirtualScreenHeight(video->GetResolution(), 720.0f);
 		Sprite::SetParallaxIntensity(2.0f);
 
+		const math::Rect defaultRect;
+
 		video->BeginRendering();
 		{
-			spriteImage->Draw(Vector3(0.0f), Sprite::GetVirtualScreenResolution(), Vector2(0.0f), Color(0xFFFFFFFF), 0.0f, flipX, flipY);
+			spriteImage->Draw(
+				Vector3(0.0f),
+				Sprite::GetVirtualScreenResolution(),
+				Vector2(0.0f),
+				Color(0xFFFFFFFF),
+				0.0f,
+				defaultRect,
+				flipX,
+				flipY);
 
-			castleWall->Draw(Vector3(0.0f), castleWall->GetSize(), Vector2(0.0f), Color(1.0f, 1.0f, 1.0f, 1.0f),
-				0.0f, false, false, 0, castleWallLm->GetTexture(), Sprite::TBM_MODULATE);
+			ShaderParametersPtr modulateParameters(new ShaderParameters);
+			(*modulateParameters)["secondary"] = std::make_shared<Shader::TextureShaderParameter>(castleWallLm->GetTexture(), 1);
+		
+			castleWall->Draw(
+				Vector3(0.0f),
+				castleWall->GetSize(defaultRect),
+				Vector2(0.0f),
+				Color(1.0f, 1.0f, 1.0f, 1.0f),
+				0.0f,
+				defaultRect,
+				false,
+				false,
+				Sprite::m_modulateShader,
+				modulateParameters);
 
-			pixelPerfectSpaceShip->Draw(Vector3(0.0f), Vector2(0.5f), 1.0f, angle);
-			pixelPerfectSpaceShip->Draw(Vector3(256.0f, 512.0f, 0.0f), Vector2(128.0f), Vector2(0.5f), Color(0x77FF0000), 90.0f, false, false);
+			pixelPerfectSpaceShip->Draw(Vector3(0.0f), Vector2(0.5f), 1.0f, angle, defaultRect);
+
+			pixelPerfectSpaceShip->Draw(
+				Vector3(256.0f, 512.0f, 0.0f),
+				Vector2(128.0f),
+				Vector2(0.5f),
+				Color(0x77FF0000),
+				90.0f,
+				defaultRect,
+				false,
+				false,
+				Sprite::m_defaultShader);
 
 			for (float z = -20.0f; z <= 20.0f; z += 2.0f)
 			{
-				pixelPerfectSpaceShip->Draw(Vector3(input->GetTouchPos(0), z), Vector2(0.5f, 1.0f), 1.5f, -angle);
+
+				pixelPerfectSpaceShip->Draw(Vector3(input->GetTouchPos(0), z), Vector2(0.5f, 1.0f), 1.5f, -angle, defaultRect);
 			}
 
 			for (float z = -80.0f; z <= 80.0f; z += 8.0f)
 			{
 				const Color solidColor(0.0f, 0.4f, 0.6f, Util::Clamp(z / 80.0f, 0.0f, 1.0f));
+
+				ShaderParametersPtr solidColorParameters(new ShaderParameters);
+				(*solidColorParameters)["solidColor"] = std::make_shared<Shader::Vector4ShaderParameter>(solidColor);
+
 				pixelPerfectSpaceShip->Draw(
 					Vector3(Vector2(1040.0f, 480.0f), z),
-					pixelPerfectSpaceShip->GetSize(),
+					pixelPerfectSpaceShip->GetSize(defaultRect),
 					Vector2(0.5f),
 					Color(1.0f, 1.0f, 1.0f, 1.0f),
 					-angle,
+					defaultRect,
 					false,
 					false,
-					&solidColor);
+					Sprite::m_solidColorShader,
+					solidColorParameters);
 			}
 
-			demon->SetRect(demonRects.GetRect(demonFrame));
-			demon->Draw(Vector3(800.0f, 0.0f, 0.0f), Vector2(0.5f, 0.0f), 1.0f);
+			demon->Draw(Vector3(800.0f, 0.0f, 0.0f), Vector2(0.5f, 0.0f), 1.0f, 0.0f, demonRects.GetRect(demonFrame));
 		}
 		video->EndRendering();
 	}
