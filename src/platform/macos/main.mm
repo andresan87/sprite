@@ -132,6 +132,18 @@ int main(int argc, const char * argv[])
 			}
 
 			demon->Draw(Vector3(800.0f, 0.0f, 0.0f), Vector2(0.5f, 0.0f), 1.0f, 0.0f, demonRects.GetRect(demonFrame));
+			
+			spriteImage->BeginFastDraw();
+			for (float t = 0.0f; t < 60.0f; t += 1.0f)
+			{
+				spriteImage->FastDraw(
+					Vector3(700.0f, 400.0f, 0.0f) + Vector3(3.0f * t, 3.0f * t, t * 1.0f),
+					spriteImage->GetSize(defaultRect),
+					Vector2(0.5f),
+					Color(1.0f, 0.5f, 0.7f, 0.3f),
+					defaultRect);
+			}
+			spriteImage->EndFastDraw();
 		}
 		video->EndRendering();
 	}

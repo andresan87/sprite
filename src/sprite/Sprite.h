@@ -26,6 +26,7 @@ class Sprite
 
 public:
 	static ShaderPtr m_defaultShader;
+	static ShaderPtr m_fastShader;
 	static ShaderPtr m_solidColorShader;
 	static ShaderPtr m_addShader;
 	static ShaderPtr m_modulateShader;
@@ -64,6 +65,15 @@ public:
 		const bool flipY,
 		ShaderPtr shader = nullptr,
 		ShaderParametersPtr shaderParameters = nullptr) const;
+
+	void BeginFastDraw() const;
+	void FastDraw(
+		const math::Vector3& pos,
+		const math::Vector2& size,
+		const math::Vector2& origin,
+		const Color& color,
+		const math::Rect& rect) const;
+	void EndFastDraw() const;
 
 	TexturePtr GetTexture();
 };

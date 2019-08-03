@@ -8,6 +8,7 @@ namespace sprite {
 
 PolygonRendererPtr Sprite::m_polygonRenderer;
 ShaderPtr Sprite::m_defaultShader;
+ShaderPtr Sprite::m_fastShader;
 ShaderPtr Sprite::m_solidColorShader;
 ShaderPtr Sprite::m_addShader;
 ShaderPtr Sprite::m_modulateShader;
@@ -40,6 +41,15 @@ void Sprite::Initialize(VideoPtr video, FileManagerPtr fileManager)
 		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.vs", vertexShader);
 		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.fs", fragmentShader);
 		m_defaultShader = Shader::Create(video, vertexShader, fragmentShader);
+	}
+
+	if (!m_fastShader)
+	{
+		FileIOHubPtr fileIOHub = FileIOHub::Create();
+		std::string vertexShader, fragmentShader;
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite-fast.vs", vertexShader);
+		fileManager->GetUTF8FileString(fileIOHub->GetResourceDirectory() + "shaders/opengl/default-sprite.fs", fragmentShader);
+		m_fastShader = Shader::Create(video, vertexShader, fragmentShader);
 	}
 
 	if (!m_solidColorShader)
@@ -226,6 +236,43 @@ void Sprite::Draw(
 
 		m_polygonRenderer->Render();
 	}
+	m_polygonRenderer->EndRendering();
+}
+
+void Sprite::BeginFastDraw() const
+{
+	m_polygonRenderer->BeginRendering(m_fastShader);
+	m_fastShader->SetParameter("diffuse", m_texture, 0);
+}
+
+void Sprite::FastDraw(
+	const math::Vector3& pos,
+	const math::Vector2& size,
+	const math::Vector2& origin,
+	const Color& color,
+	const math::Rect& rect) const
+{
+	using namespace math;
+
+	#define FAST_SIZE_ORIGIN 0
+	#define FAST_SPRITEPOS_VIRTUALTARGETRESOLUTION 1
+	#define FAST_COLOR 2
+	#define FAST_RECTPOS_RECTSIZE 3
+
+	const unsigned int uSize = 4;
+	Vector4* u = new Vector4[uSize];
+	u[FAST_SIZE_ORIGIN] = Vector4(size, origin);
+	u[FAST_SPRITEPOS_VIRTUALTARGETRESOLUTION] = Vector4(Vector2(pos.x, pos.y), m_virtualScreenResolution);
+	u[FAST_COLOR] = color;
+	u[FAST_RECTPOS_RECTSIZE] = Vector4(rect.pos, rect.size);
+	m_fastShader->SetConstantArray("u", uSize, u);
+	delete [] u;
+
+	m_polygonRenderer->Render();
+}
+
+void Sprite::EndFastDraw() const
+{
 	m_polygonRenderer->EndRendering();
 }
 
